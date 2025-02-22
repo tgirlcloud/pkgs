@@ -8,13 +8,13 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "tgirlcloud-site";
-  version = "0.0.1";
+  version = "0-unstable-2025-02-19";
 
   src = fetchFromGitHub {
     owner = "tgirlcloud";
     repo = "site";
-    rev = "meow";
-    hash = "meow";
+    rev = "c510af0fe779a946dcd7cdb0b72a56c43d81eaab";
+    hash = "c510af0fe779a946dcd7cdb0b72a56c43d81eaab";
   };
 
   nativeBuildInputs = [
