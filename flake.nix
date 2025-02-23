@@ -10,9 +10,22 @@
     let
       inherit (nixpkgs) lib;
 
+      outputSystems = lib.systems.flakeExposed;
+      cachedSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
+      devSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+
       forAllSystems =
-        fn:
-        lib.genAttrs lib.systems.flakeExposed (
+        systems: fn:
+        lib.genAttrs systems (
           system:
           fn (
             import nixpkgs {
@@ -36,9 +49,9 @@
         };
     in
     {
-      packages = forAllSystems (pkgs: import ./default.nix { inherit pkgs; });
+      packages = forAllSystems outputSystems (pkgs: import ./default.nix { inherit pkgs; });
 
-      hydraJobs = forAllSystems (
+      hydraJobs = forAllSystems cachedSystems (
         pkgs:
         lib.filterAttrs (
           _: pkg:
@@ -55,7 +68,7 @@
 
       # taken and slightly modified from
       # https://github.com/lilyinstarlight/nixos-cosmic/blob/0b0e62252fb3b4e6b0a763190413513be499c026/flake.nix#L81
-      apps = forAllSystems (pkgs: {
+      apps = forAllSystems devSystems (pkgs: {
         update = {
           type = "app";
           program = lib.getExe (
@@ -86,11 +99,11 @@
         };
       });
 
-      devShells = forAllSystems (pkgs: {
+      devShells = forAllSystems devSystems (pkgs: {
         default = pkgs.callPackage ./shell.nix { };
       });
 
-      formatter = forAllSystems (pkgs: pkgs.nixfmt-rfc-style);
+      formatter = forAllSystems devSystems (pkgs: pkgs.nixfmt-rfc-style);
 
       overlays.default = _: prev: import ./default.nix { pkgs = prev; };
 
