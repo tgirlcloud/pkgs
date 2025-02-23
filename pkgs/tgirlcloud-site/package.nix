@@ -14,7 +14,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     owner = "tgirlcloud";
     repo = "site";
     rev = "c510af0fe779a946dcd7cdb0b72a56c43d81eaab";
-    hash = "c510af0fe779a946dcd7cdb0b72a56c43d81eaab";
+    hash = "sha256-3V0A9y5WUw7lCNMTt96jkdRxWADZEHjiyutjKloGkCQ=";
   };
 
   nativeBuildInputs = [
