@@ -6,7 +6,7 @@ The packages are always on the latest git version hence why they may be broken.
 
 The main reason for the existence of this repo is such that my friends can have easy access to the packages set that I use and want to provide them without the hastle of making a PR to nixpkgs.
 
-If you're reading the docs on the README.md file you can find the full documentation at [https://isabelroses.github.io/beapkgs](https://isabelroses.github.io/beapkgs/).
+If you're reading the docs on the README.md file you can find the full documentation at [https://beapkgs.tgirl.cloud/](https://beapkgs.tgirl.cloud/).
 
 ## Installation
 
@@ -18,7 +18,7 @@ You can use this as either a flake or with channels, not that I know how to use 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     beapkgs = {
-      url = "github:isabelroses/beapkgs";
+      url = "github:tgirlcloud/beapkgs";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         # flakes users don't need to track flake-compact

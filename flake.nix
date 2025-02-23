@@ -124,9 +124,7 @@
     };
 
   nixConfig = {
-    extra-substituters = [ "https://beapkgs.cachix.org" ];
-    extra-trusted-public-keys = [
-      "beapkgs.cachix.org-1:gcUFDNeQvGeAc/jDl/K8ax9WZvcCA71J+A36m7u7UWM="
-    ];
+    extra-substituters = [ "https://cache.tgirl.cloud/prod" ];
+    extra-trusted-public-keys = [ "cache.tgirl.cloud-1:zr6UM/AEOP4MAPY0xWF2Pv+v5VVCKxnLaubXCjXtTmw=" ];
   };
 }

@@ -5,7 +5,7 @@
   ...
 }:
 let
-  urlPrefix = "https://github.com/isabelroses/beapkgs/blob/main/";
+  urlPrefix = "https://github.com/tgirlcloud/beapkgs/blob/main/";
 in
 nuscht-search.mkMultiSearch {
   title = "beapkgs Option Search";
