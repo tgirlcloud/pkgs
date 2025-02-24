@@ -1,0 +1,58 @@
+name: Build and populate cache
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - Bump Flake Inputs
+    types:
+      - completed
+  push:
+    paths:
+      - "pkgs"
+      - "**.lock"
+      - ".github/workflows/build.yml"
+
+jobs:
+  build:
+    name: Build (${{ matrix.system }})
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            system: x86_64-linux
+          - os: macos-latest
+            system: aarch64-darwin
+          - os: ubuntu-24.04-arm
+            system: aarch64-linux
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Lix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          source-url: https://install.lix.systems/lix/lix-installer-${{ matrix.system }}
+          logger: pretty
+
+      - name: Setup Attic
+        uses: ryanccn/attic-action@v0.3.1
+        with:
+          endpoint: https://cache.tgirl.cloud
+          cache: prod
+          token: ${{ secrets.ATTIC_TOKEN }}
+
+      - name: Build from the matrix
+        run: |
+          nix run \
+            github:Mic92/nix-fast-build -- \
+            --no-nom \
+            --skip-cached \
+            --systems '${{ matrix.system }}' \
+            --option accept-flake-config true \
+            --flake '.#hydraJobs.${{ matrix.system }}'
+
