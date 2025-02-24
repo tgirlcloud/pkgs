@@ -47,12 +47,12 @@ rustPlatform.buildRustPackage rec {
     [
       fontconfig
       zlib
+      openssl
     ]
     ++ lib.optionals stdenv.hostPlatform.isLinux [
       xorg.libX11
       xorg.libxcb
       libxkbcommon
-      openssl
       wayland
       xorg.xcbutil
       xorg.xcbutilimage
