@@ -15,7 +15,7 @@ mkShellNoCC {
       runtimeInputs = [ simple-http-server ];
 
       text = ''
-        nix build -L .#beapkgs-docs
+        nix build -L .#tgirlpkgs-docs
 
         simple-http-server -i result
       '';

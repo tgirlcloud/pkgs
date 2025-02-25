@@ -1,18 +1,18 @@
-{ beapkgsModules, beapkgsSelf }:
+{ tgirlpkgsModules, tgirlpkgsSelf }:
 { lib, config, ... }:
 let
   inherit (lib) flip mkIf mkEnableOption;
   inherit (lib.modules) importApply;
 
-  importApplySelf = map (flip importApply { beapkgs = beapkgsSelf; });
+  importApplySelf = map (flip importApply { tgirlpkgs = tgirlpkgsSelf; });
 in
 {
-  options.beapkgs.cache.enable = mkEnableOption "beapkgs cache";
+  options.tgirlpkgs.cache.enable = mkEnableOption "tgirlpkgs cache";
 
-  imports = importApplySelf beapkgsModules;
+  imports = importApplySelf tgirlpkgsModules;
 
   config = {
-    nix.settings = mkIf config.beapkgs.cache.enable {
+    nix.settings = mkIf config.tgirlpkgs.cache.enable {
       substituters = [ "https://cache.tgirl.cloud/prod" ];
       trusted-public-keys = [ "prod:zr6UM/AEOP4MAPY0xWF2Pv+v5VVCKxnLaubXCjXtTmw=" ];
     };

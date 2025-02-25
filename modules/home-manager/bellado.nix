@@ -1,4 +1,4 @@
-{ beapkgs }:
+{ tgirlpkgs }:
 {
   lib,
   pkgs,
@@ -25,7 +25,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ beapkgs.packages.${pkgs.stdenv.hostPlatform.system}.bellado ];
+    home.packages = [ tgirlpkgs.packages.${pkgs.stdenv.hostPlatform.system}.bellado ];
 
     programs = {
       bash.shellAliases = aliases;

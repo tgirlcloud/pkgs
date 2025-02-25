@@ -1,21 +1,21 @@
 {
   pkgs,
   nuscht-search,
-  beapkgs,
+  tgirlpkgs,
   ...
 }:
 let
-  urlPrefix = "https://github.com/tgirlcloud/beapkgs/blob/main/";
+  urlPrefix = "https://github.com/tgirlcloud/tgirlpkgs/blob/main/";
 in
 nuscht-search.mkMultiSearch {
-  title = "beapkgs Option Search";
+  title = "tgirlpkgs Option Search";
   baseHref = "/";
 
   scopes = [
     {
       name = "NixOS modules";
       modules = [
-        (import ../modules/nixos { beapkgsSelf = beapkgs; })
+        (import ../modules/nixos { tgirlpkgsSelf = tgirlpkgs; })
         { _module.args = { inherit pkgs; }; }
       ];
       inherit urlPrefix;
@@ -23,7 +23,7 @@ nuscht-search.mkMultiSearch {
     {
       name = "darwin modules";
       modules = [
-        (import ../modules/darwin { beapkgsSelf = beapkgs; })
+        (import ../modules/darwin { tgirlpkgsSelf = tgirlpkgs; })
         { _module.args = { inherit pkgs; }; }
       ];
       inherit urlPrefix;
@@ -31,7 +31,7 @@ nuscht-search.mkMultiSearch {
     {
       name = "home-manager modules";
       modules = [
-        (import ../modules/home-manager { beapkgsSelf = beapkgs; })
+        (import ../modules/home-manager { tgirlpkgsSelf = tgirlpkgs; })
         { _module.args = { inherit pkgs; }; }
       ];
       inherit urlPrefix;

@@ -1,6 +1,6 @@
 {
   "nodes": {
-    "beapkgs": {
+    "tgirlpkgs": {
       "inputs": {
         "flake-compat": "flake-compat",
         "nixpkgs": "nixpkgs"
@@ -134,7 +134,7 @@
     },
     "root": {
       "inputs": {
-        "beapkgs": "beapkgs",
+        "tgirlpkgs": "tgirlpkgs",
         "nixpkgs": "nixpkgs_2",
         "nuscht-search": "nuscht-search"
       }

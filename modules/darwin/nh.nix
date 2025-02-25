@@ -1,4 +1,4 @@
-{ beapkgs }:
+{ tgirlpkgs }:
 {
   lib,
   pkgs,
@@ -13,7 +13,7 @@ in
     enable = lib.mkEnableOption "nh-darwin, yet another Nix CLI helper. Works on NixOS, NixDarwin, and HomeManager Standalone";
 
     package = lib.mkPackageOption pkgs "nh" { } // {
-      default = beapkgs.packages.${pkgs.stdenv.hostPlatform.system}.nh;
+      default = tgirlpkgs.packages.${pkgs.stdenv.hostPlatform.system}.nh;
     };
 
     flake = lib.mkOption {

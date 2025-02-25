@@ -1,10 +1,10 @@
-{ beapkgsSelf }:
+{ tgirlpkgsSelf }:
 { lib, ... }:
 {
   imports = [
     (lib.modules.importApply ../global.nix {
-      beapkgsModules = import ./all-modules.nix;
-      inherit beapkgsSelf;
+      tgirlpkgsModules = import ./all-modules.nix;
+      inherit tgirlpkgsSelf;
     })
   ];
 }

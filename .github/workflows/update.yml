@@ -31,6 +31,9 @@ jobs:
       - name: Update Lockfile
         run: nix flake update --commit-lock-file
 
+      - name: Update Dev Lockfile
+        run: nix flake update --flake ./dev --commit-lock-file
+
       - name: Update Packages
         run: nix run .#update
 

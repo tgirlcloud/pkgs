@@ -45,7 +45,7 @@
           _class = class;
           _file = "${self.outPath}/flake.nix#${class}Modules.${name}";
 
-          imports = [ (import file { beapkgsSelf = self; }) ];
+          imports = [ (import file { tgirlpkgsSelf = self; }) ];
         };
     in
     {
