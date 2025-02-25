@@ -125,6 +125,6 @@
 
   nixConfig = {
     extra-substituters = [ "https://cache.tgirl.cloud/prod" ];
-    extra-trusted-public-keys = [ "cache.tgirl.cloud-1:zr6UM/AEOP4MAPY0xWF2Pv+v5VVCKxnLaubXCjXtTmw=" ];
+    extra-trusted-public-keys = [ "prod:zr6UM/AEOP4MAPY0xWF2Pv+v5VVCKxnLaubXCjXtTmw=" ];
   };
 }

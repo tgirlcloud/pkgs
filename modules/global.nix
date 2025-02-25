@@ -14,7 +14,7 @@ in
   config = {
     nix.settings = mkIf config.beapkgs.cache.enable {
       substituters = [ "https://cache.tgirl.cloud/prod" ];
-      trusted-public-keys = [ "cache.tgirl.cloud-1:zr6UM/AEOP4MAPY0xWF2Pv+v5VVCKxnLaubXCjXtTmw=" ];
+      trusted-public-keys = [ "prod:zr6UM/AEOP4MAPY0xWF2Pv+v5VVCKxnLaubXCjXtTmw=" ];
     };
   };
 }
