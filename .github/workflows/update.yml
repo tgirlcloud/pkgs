@@ -7,7 +7,7 @@ on:
 
 jobs:
   update:
-    if: github.repository == 'tgirlcloud/beapkgs'
+    if: github.repository == 'tgirlcloud/pkgs'
     runs-on: ubuntu-latest
 
     permissions:
