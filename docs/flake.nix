@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    tgirlpkgs.url = "git+file:.";
+    tgirlpkgs.url = "path:../.";
 
     nuscht-search = {
       url = "github:NuschtOS/search";
