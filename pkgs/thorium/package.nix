@@ -138,7 +138,7 @@ let
     "OutdatedBuildDetector"
   ] ++ optional enableVideoAcceleration "UseChromeOSDirectVideoDecoder";
 
-  version = "128.0.6613.189";
+  version = "130.0.6723.174";
 in
 stdenv.mkDerivation {
   pname = "thorium";
@@ -146,7 +146,7 @@ stdenv.mkDerivation {
 
   src = fetchurl {
     url = "https://github.com/Alex313031/thorium/releases/download/M${version}/thorium-browser_${version}_AVX2.deb";
-    hash = "sha256-oid72E4n9jAQsCUrztlyj56Gd0+pz735y6b5COMA4tg=";
+    hash = "sha256-TeDwx7Bqy0NSaNBMuzCf4O+rgWjB/tmIvDgJQnGVSGY=";
   };
 
   dontConfigure = true;
