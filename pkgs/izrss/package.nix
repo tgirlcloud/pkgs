@@ -14,8 +14,8 @@ buildGoModule {
   src = fetchFromGitHub {
     owner = "isabelroses";
     repo = "izrss";
-    rev = "6f04b34eb2ef2900abaa0fd0451f6f0a04419a25";
-    hash = "sha256-t/YvSl6JoYLHsCPkRlbaM8OlAMQc83cb4sOKF7S/CFw=";
+    rev = "3dd6b4929b01d7441e36fdab9e377ab2ffee8d6e";
+    hash = "sha256-N+q5x/8VlZyfEGkGnZglQTPJv9BcYqpaSComnZms3dI=";
   };
 
   vendorHash = "sha256-bB6oxIbFqY0rPoGetIGfKEdfPsX9cqeb9WcjtgjAAJA=";
