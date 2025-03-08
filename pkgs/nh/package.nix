@@ -10,8 +10,8 @@
   use-nom ? true,
 }:
 let
-  version = "4.0.0-beta.11-unstable-2025-02-26";
-  rev = "1b25d633376f50139f7b8fe314c8914711d44b42";
+  version = "4.0.0-beta.11-unstable-2025-03-07";
+  rev = "509dd6c96eefa11e7324f475a86ff4ea447987b7";
 
   rtp = lib.makeBinPath (
     [
@@ -30,7 +30,7 @@ rustPlatform.buildRustPackage {
     owner = "viperml";
     repo = "nh";
     inherit rev;
-    hash = "sha256-ILEarFQp89V6RWr5GRU/ip9dB1SEqUFQGs1QMPrk9TQ=";
+    hash = "sha256-ahECQuhpwRKp0TcBsE1rsHlm6t+mUllMojORXmgBcC4=";
   };
 
   useFetchCargoVendor = true;
