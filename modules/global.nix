@@ -13,8 +13,8 @@ in
 
   config = {
     nix.settings = mkIf config.tgirlpkgs.cache.enable {
-      substituters = [ "https://cache.tgirl.cloud/prod" ];
-      trusted-public-keys = [ "prod:zr6UM/AEOP4MAPY0xWF2Pv+v5VVCKxnLaubXCjXtTmw=" ];
+      substituters = [ "https://cache.tgirl.cloud/tgirlcloud" ];
+      trusted-public-keys = [ "tgirlcloud:vcV9oxS9pLXyeu1dVnBabLalLlw0yJzu6PakQM372t0=" ];
     };
   };
 }

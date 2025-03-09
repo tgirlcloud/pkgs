@@ -124,7 +124,7 @@
     };
 
   nixConfig = {
-    extra-substituters = [ "https://cache.tgirl.cloud/prod" ];
-    extra-trusted-public-keys = [ "prod:zr6UM/AEOP4MAPY0xWF2Pv+v5VVCKxnLaubXCjXtTmw=" ];
+    extra-substituters = [ "https://cache.tgirl.cloud/tgirlcloud" ];
+    extra-trusted-public-keys = [ "tgirlcloud:vcV9oxS9pLXyeu1dVnBabLalLlw0yJzu6PakQM372t0=" ];
   };
 }
