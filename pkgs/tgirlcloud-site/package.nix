@@ -8,13 +8,13 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "tgirlcloud-site";
-  version = "0-unstable-2025-02-25";
+  version = "0-unstable-2025-03-10";
 
   src = fetchFromGitHub {
     owner = "tgirlcloud";
     repo = "site";
-    rev = "0012052778a634d2deb14abcb0ba9bb4dd42d7de";
-    hash = "sha256-ZBuvj+9xYAoXTZhhZOvdLnCJ97KLHyXq3KQx6b0XWpI=";
+    rev = "7b9ea07c265ede77503318406ab1a3d9e9e44a30";
+    hash = "sha256-WuG+jSaA0Ut65fs34qDT93KPvEqYCsMhdPywP2M8uTI=";
   };
 
   nativeBuildInputs = [
@@ -24,7 +24,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   pnpmDeps = pnpm.fetchDeps {
     inherit (finalAttrs) pname version src;
-    hash = "sha256-zntHo+O8Hck3YjkPwGaHhuYvGIqGEj7JP8YWwUL4TPk=";
+    hash = "sha256-Cx0aB6vYjv6hKvkdS+LjY3VuvCqJd9dY5BcnAqEGxTc=";
   };
 
   buildPhase = ''
