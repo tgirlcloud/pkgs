@@ -16,11 +16,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Lix
-        uses: DeterminateSystems/nix-installer-action@main
+      - name: Install Nix
+        uses: cachix/install-nix-action@V27
         with:
-          source-url: https://install.lix.systems/lix/lix-installer-x86_64-linux
-          logger: pretty
+          # NOTE: Required for subflake
+          install_url: https://releases.nixos.org/nix/nix-2.26.0/install
 
       - name: Build Linux packages
         run: "nix build -L ./docs#tgirlpkgs-docs"
