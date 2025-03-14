@@ -7,6 +7,7 @@
   nix-output-monitor,
   fetchFromGitHub,
   nix-update-script,
+  fetchpatch,
   use-nom ? true,
 }:
 let
@@ -56,6 +57,13 @@ rustPlatform.buildRustPackage {
     wrapProgram $out/bin/nh \
       --prefix PATH : ${rtp}
   '';
+
+  patchs = [
+    (fetchpatch {
+      url = "https://patch-diff.githubusercontent.com/raw/viperML/nh/pull/235.patch";
+      hash = "sha256-eIGSb2D+rMdDwu4DbZG2Jw8xzZt/rAN7YsW/iKzJl/w=";
+    })
+  ];
 
   env = {
     NH_REV = rev;
