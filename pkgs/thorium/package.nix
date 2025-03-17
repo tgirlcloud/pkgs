@@ -2,8 +2,9 @@
   lib,
   stdenv,
   fetchurl,
-  wrapGAppsHook4,
-  makeWrapper,
+
+  buildPackages,
+
   alsa-lib,
   at-spi2-atk,
   at-spi2-core,
@@ -21,9 +22,12 @@
   gsettings-desktop-schemas,
   gtk3,
   gtk4,
+  qt6,
   libdrm,
+  libkrb5,
+  libuuid,
   libxkbcommon,
-  mesa,
+  libgbm,
   nspr,
   nss,
   pango,
@@ -33,12 +37,8 @@
   wayland,
   xdg-utils,
   coreutils,
-  libuuid,
   xorg,
   zlib,
-  widevine-cdm,
-  qt6,
-  libkrb5,
   vivaldi-ffmpeg-codecs,
 
   # command line arguments which are always set e.g "--disable-gpu"
@@ -63,6 +63,7 @@
   enableVulkan ? vulkanSupport,
 
   enableWideVine ? false,
+  widevine-cdm,
 }:
 let
   inherit (lib)
@@ -93,6 +94,7 @@ let
       gtk3
       gtk4
       libdrm
+      xorg.libX11
       libGL
       libxkbcommon
       xorg.libXScrnSaver
@@ -106,20 +108,21 @@ let
       xorg.libXrender
       xorg.libxshmfence
       xorg.libXtst
-      xorg.libxcb
-      xorg.libX11
       libuuid
-      mesa
+      libgbm
       nspr
       nss
       pango
       pipewire
       udev
       wayland
+      xorg.libxcb
       zlib
       snappy
       libkrb5
       vivaldi-ffmpeg-codecs
+      qt6.qtbase
+      qt6.qtwayland
     ]
     ++ optional pulseSupport libpulseaudio
     ++ optional libvaSupport libva;
@@ -156,17 +159,15 @@ stdenv.mkDerivation {
 
   nativeBuildInputs = [
     dpkg
-    (wrapGAppsHook4.override { inherit makeWrapper; })
-    qt6.wrapQtAppsHook
+    (buildPackages.wrapGAppsHook4.override { makeWrapper = buildPackages.makeShellWrapper; })
   ];
 
   buildInputs = [
+    # needed for GSETTINGS_SCHEMAS_PATH
     glib
     gsettings-desktop-schemas
     gtk3
     gtk4
-    qt6.qtbase
-    qt6.qtwayland
 
     # needed for XDG_ICON_DIRS
     adwaita-icon-theme
@@ -239,12 +240,12 @@ stdenv.mkDerivation {
         ]
       }
       ${optionalString (enableFeatures != [ ]) ''
-        --add-flags "--enable-features=${strings.concatStringsSep "," enableFeatures}"
+        --add-flags "--enable-features=${strings.concatStringsSep "," enableFeatures}\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+,WaylandWindowDecorations --enable-wayland-ime=true}}"
       ''}
       ${optionalString (disableFeatures != [ ]) ''
         --add-flags "--disable-features=${strings.concatStringsSep "," disableFeatures}"
       ''}
-      --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations}}"
+      --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto}}"
       ${optionalString vulkanSupport ''
         --prefix XDG_DATA_DIRS  : "${addDriverRunpath.driverLink}/share"
       ''}
@@ -264,5 +265,6 @@ stdenv.mkDerivation {
     license = lib.licenses.bsd3;
     platforms = [ "x86_64-linux" ];
     maintainers = with lib.maintainers; [ isabelroses ];
+    mainProgram = "throium-browser";
   };
 }
