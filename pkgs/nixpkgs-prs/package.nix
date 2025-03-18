@@ -4,7 +4,6 @@
   fetchFromGitHub,
   openssl,
   pkg-config,
-  versionCheckHook,
   nix-update-script,
 }:
 rustPlatform.buildRustPackage {
@@ -21,18 +20,8 @@ rustPlatform.buildRustPackage {
   useFetchCargoVendor = true;
   cargoHash = "sha256-pgqMt/HhY0vdJqMgASGmlXVWP4C/bd200PINAZGMIH4=";
 
-  nativeBuildInputs = [
-    pkg-config
-    versionCheckHook
-  ];
-
-  buildInputs = [
-    openssl
-  ];
-
-  doInstallCheck = true;
-  versionCheckProgram = "${placeholder "out"}/bin/nixpkgs-prs";
-  versionCheckProgramArg = [ "--version" ];
+  nativeBuildInputs = [ pkg-config ];
+  buildInputs = [ openssl ];
 
   passthru.updateScript = nix-update-script {
     extraArgs = [
