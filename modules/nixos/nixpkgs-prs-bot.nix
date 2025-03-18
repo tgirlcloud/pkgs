@@ -60,6 +60,7 @@ in
 
           services."nixpkgs-prs-${poster}" = {
             description = "nixpkgs prs ${poster} bot";
+            wants = [ "network-online.target" ];
             after = [ "network-online.target" ];
 
             serviceConfig = {
