@@ -59,6 +59,10 @@ rustPlatform.buildRustPackage {
   '';
 
   patchs = [
+    # support for darwin system wide activation
+    ./darwin-system-wide-activation.patch
+
+    # don't error on the existance of FLAKE in the environment if NH_FLAKE is set
     (fetchpatch {
       url = "https://patch-diff.githubusercontent.com/raw/viperML/nh/pull/235.patch";
       hash = "sha256-eIGSb2D+rMdDwu4DbZG2Jw8xzZt/rAN7YsW/iKzJl/w=";

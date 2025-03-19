@@ -1,0 +1,44 @@
+From 31e7480a19511bdac54371ea091cd0b5470a8e86 Mon Sep 17 00:00:00 2001
+From: isabel <isabel@isabelroses.com>
+Date: Wed, 19 Mar 2025 11:39:53 +0000
+Subject: [PATCH] feat(darwin): support new system-wide activation
+
+---
+ src/darwin.rs | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+
+diff --git a/src/darwin.rs b/src/darwin.rs
+index f64b2fe..e5eb231 100644
+--- a/src/darwin.rs
++++ b/src/darwin.rs
+@@ -1,3 +1,5 @@
++use std::fs;
++
+ use color_eyre::eyre::{bail, Context};
+ use tracing::{debug, info, warn};
+ 
+@@ -139,11 +141,17 @@ impl DarwinRebuildArgs {
+                 .run()?;
+ 
+             let switch_to_configuration = out_path.get_path().join("activate-user");
++            let execute_user_activate = switch_to_configuration.exists()
++                && !fs::read_to_string(&switch_to_configuration)?
++                    .contains("# nix-darwin: deprecated");
+ 
+-            Command::new(switch_to_configuration)
+-                .message("Activating configuration for user")
+-                .dry(self.common.dry)
+-                .run()?;
++            if execute_user_activate {
++                Command::new(switch_to_configuration)
++                    .elevate(true)
++                    .message("Activating configuration for user")
++                    .dry(self.common.dry)
++                    .run()?;
++            }
+ 
+             let switch_to_configuration = out_path.get_path().join("activate");
+ 
+-- 
+2.48.1
+
