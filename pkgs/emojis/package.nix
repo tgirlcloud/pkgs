@@ -5,9 +5,9 @@
 }:
 stdenvNoCC.mkDerivation {
   pname = "emojis";
-  version = "0.1.3";
+  version = "0.1.4";
 
-  src = builtins.filterSource (path: _: baseNameOf path != ".zip") ./.;
+  src = lib.filterSource (path: _: lib.baseNameOf path != ".zip") ./.;
 
   nativeBuildInputs = [ unzip ];
 
