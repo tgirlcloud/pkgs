@@ -7,7 +7,10 @@ stdenvNoCC.mkDerivation {
   pname = "emojis";
   version = "0.1.4";
 
-  src = lib.filterSource (path: _: lib.baseNameOf path != ".zip") ./.;
+  src = lib.fileset.toSource {
+    root = ./.;
+    fileset = ./emojis.zip;
+  };
 
   nativeBuildInputs = [ unzip ];
 
@@ -16,6 +19,7 @@ stdenvNoCC.mkDerivation {
     mkdir -p $out
     unzip $src/emojis.zip
     cp * $out
+    rm -rf $out/emojis.zip
     runHook postInstall
   '';
 
