@@ -7,14 +7,14 @@
 }:
 let
   pname = "headscale-ui";
-  version = "2025.03.14";
+  version = "2025.03.21";
 in
 stdenv.mkDerivation {
   inherit pname version;
 
   src = fetchurl {
     url = "https://github.com/gurucomputing/${pname}/releases/download/${version}/headscale-ui.zip";
-    sha256 = "sha256-qOzH1+ptsrrQ05C0cwcFlhAvW42t6SVrXZj/RQXj1yE=";
+    sha256 = "sha256-Rk/nY9G0uZZjsLFkrwwwLXVS4vBQQ7YEfhYCg9NM6cU=";
   };
 
   buildInputs = [ unzip ];
