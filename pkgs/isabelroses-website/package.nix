@@ -8,13 +8,13 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "isabelroses-website";
-  version = "0-unstable-2025-03-18";
+  version = "0-unstable-2025-03-22";
 
   src = fetchFromGitHub {
     owner = "isabelroses";
     repo = "website";
-    rev = "59337fffcbc4d56ac01327457677d359f8bcc690";
-    hash = "sha256-A/ifcKX5cKwBj1/q/fJU5+hcNB9QW6ofUZrO7WE8m3c=";
+    rev = "6a98c853b596f9e3dc418104f2ce6c3a1685f67e";
+    hash = "sha256-08XSI3OR2tyLB9eW0gKc4/dw1RsOW8uvKeLwuLl8uSg=";
   };
 
   useFetchCargoVendor = true;
