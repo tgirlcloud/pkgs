@@ -8,13 +8,13 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "tgirlcloud-site";
-  version = "0-unstable-2025-03-10";
+  version = "0-unstable-2025-03-23";
 
   src = fetchFromGitHub {
     owner = "tgirlcloud";
     repo = "site";
-    rev = "7b9ea07c265ede77503318406ab1a3d9e9e44a30";
-    hash = "sha256-WuG+jSaA0Ut65fs34qDT93KPvEqYCsMhdPywP2M8uTI=";
+    rev = "096bbcb2d24efb5d26277fe822fc7f0ba02161b4";
+    hash = "sha256-+YArym/XO6neiyv5JcQL57cbxv17bIiyGdF6PSXlQrw=";
   };
 
   nativeBuildInputs = [
