@@ -8,13 +8,13 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "purr";
-  version = "1.2.1-unstable-2025-03-21";
+  version = "1.2.1-unstable-2025-03-24";
 
   src = fetchFromGitHub {
     owner = "uncenter";
     repo = "purr";
-    rev = "f94559b7c5340631fc57d17449b82bf75e79b4b1";
-    hash = "sha256-9Ve53EYnkKLB5FwBwQFRoKlFLa6FXDAzt2ymIo9eHCc=";
+    rev = "5e97afb88839414452adae2cc3d11a8ac0ec846f";
+    hash = "sha256-ZuLe5s4T8cu41QD1/XB8GQ+P8LzJPNP2SfI//+BB8XY=";
   };
 
   useFetchCargoVendor = true;
