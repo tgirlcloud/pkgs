@@ -10,34 +10,19 @@
   fetchpatch,
   use-nom ? true,
 }:
-let
-  version = "4.0.0-beta.11-unstable-2025-03-25";
-  rev = "7bd0d00a3f1aab85a7e29d34b4f1f6744263e6c3";
-
-  rtp = lib.makeBinPath (
-    [
-      nvd
-    ]
-    ++ lib.optionals use-nom [
-      nix-output-monitor
-    ]
-  );
-in
-rustPlatform.buildRustPackage {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "nh";
-  inherit version;
+  version = "4.0.0-beta.11-unstable-2025-03-25";
 
   src = fetchFromGitHub {
     owner = "viperml";
     repo = "nh";
-    inherit rev;
+    rev = "7bd0d00a3f1aab85a7e29d34b4f1f6744263e6c3";
     hash = "sha256-Qe/XUKvcaNdQflvhQQSX1PV5SjNx/RCBBDHxbWxE2xI=";
   };
 
   useFetchCargoVendor = true;
   cargoHash = "sha256-GnRLUV5dyQgcjBBQXzjW0dvfHqIrlBlIup4b7oL8InI=";
-
-  strictDeps = true;
 
   nativeBuildInputs = [
     installShellFiles
@@ -55,10 +40,17 @@ rustPlatform.buildRustPackage {
 
   postFixup = ''
     wrapProgram $out/bin/nh \
-      --prefix PATH : ${rtp}
+      --prefix PATH : ${
+        lib.makeBinPath (
+          [ nvd ]
+          ++ lib.optionals use-nom [
+            nix-output-monitor
+          ]
+        )
+      }
   '';
 
-  patchs = [
+  patches = [
     # support for darwin system wide activation
     ./darwin-system-wide-activation.patch
 
@@ -70,7 +62,7 @@ rustPlatform.buildRustPackage {
   ];
 
   env = {
-    NH_REV = rev;
+    NH_REV = finalAttrs.src.rev;
   };
 
   passthru.updateScript = nix-update-script {
@@ -85,4 +77,4 @@ rustPlatform.buildRustPackage {
     mainProgram = "nh";
     maintainers = with lib.maintainers; [ isabelroses ];
   };
-}
+})
