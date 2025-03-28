@@ -8,13 +8,13 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "nixpkgs-track";
-  version = "0.2.0-unstable-2025-03-24";
+  version = "0.2.0-unstable-2025-03-27";
 
   src = fetchFromGitHub {
     owner = "uncenter";
     repo = "nixpkgs-track";
-    rev = "001ec712bab4db0ea082254b50a85b753a25608d";
-    hash = "sha256-iiXioYUB0M7dzgsGdXP1Yv5luna2b+AYaYrDqr6yN4g=";
+    rev = "8263e2a2bc6d86cbdf3ae9248f869d7f31f3fd4a";
+    hash = "sha256-GxjKmLqp4ZP5xFxWHYYf7wik9t0L55gGtUnToZdJF24=";
   };
 
   useFetchCargoVendor = true;
