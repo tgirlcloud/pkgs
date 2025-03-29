@@ -117,10 +117,15 @@
         file = ./modules/darwin;
       };
 
-      homeManagerModules.default = mkModule {
+      homeModules.default = mkModule {
         class = "homeManager";
         file = ./modules/home-manager;
       };
+
+      homeManagerModules = lib.mapAttrs (
+        _:
+        lib.warn "homeManagerModules are deprecated and will be removed in the future, please use homeModules instead"
+      ) self.homeModules;
     };
 
   nixConfig = {
