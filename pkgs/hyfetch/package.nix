@@ -9,13 +9,13 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "hyfetch";
-  version = "2.0.0-rc1-unstable-2025-02-16";
+  version = "2.0.0-rc1-unstable-2025-04-06";
 
   src = fetchFromGitHub {
     owner = "hykilpikonna";
     repo = "hyfetch";
-    rev = "2cfea54a88b8e6b7e50d027ba32c959db5876a7c";
-    hash = "sha256-SVlg1dB57eKMAW87TGsyHnxdG5TqKWY/aFe6IcOa6xE=";
+    rev = "76ae5e507a5739bd756dfb6777970e14c72027c7";
+    hash = "sha256-f5VJmEK7/HPT1rDL9G0gwEx71zsZw9CikBcUXnJ5wVY=";
   };
 
   useFetchCargoVendor = true;
