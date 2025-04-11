@@ -7,7 +7,7 @@
   fetchFromGitHub,
 }:
 let
-  version = "0-unstable-2025-04-08";
+  version = "0-unstable-2025-04-10";
 in
 rustPlatform.buildRustPackage {
   pname = "blahaj";
@@ -16,8 +16,8 @@ rustPlatform.buildRustPackage {
   src = fetchFromGitHub {
     owner = "isabelroses";
     repo = "blahaj";
-    rev = "ab1a0a1e050cd5fa17602986a349aa0c37a410f9";
-    hash = "sha256-+VcI+PrSMHAVWI1BI8ZvRZ6D/s0n/EAaimFYeIBrifY=";
+    rev = "ac3d07c7e646d67f7cec4d334b0a348cbedd90a0";
+    hash = "sha256-HyA/w1uGR4AT7iQqd8SJ4T8bMG/aX4Uuk/o/rl41IY8=";
   };
 
   useFetchCargoVendor = true;
