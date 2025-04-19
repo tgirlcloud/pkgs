@@ -2,35 +2,49 @@
   lib,
   just,
   dart-sass,
-  rustPlatform,
+  stdenvNoCC,
+  nodejs_22,
+  pnpm_10,
   fetchFromGitHub,
   nix-update-script,
 }:
-rustPlatform.buildRustPackage {
+let
+  nodejs = nodejs_22;
+  pnpm = pnpm_10.override { inherit nodejs; };
+in
+stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "isabelroses-website";
-  version = "0-unstable-2025-04-05";
+  version = "0-unstable-2025-04-20";
 
   src = fetchFromGitHub {
     owner = "isabelroses";
     repo = "website";
-    rev = "7fe563f37731ef2a6d038550ad7d29b0560d8742";
-    hash = "sha256-Yz+XwBrAcS+S70y1eZxlEoB0N9yWDABY40CCm2Fb2rM=";
+    rev = "b23aaa9bd18508e4ec668e7de379d317cf196447";
+    hash = "sha256-I2AiskGAkpUyeYNdPvGW65OcPDk5dHHhC+6W6k4SrAU=";
   };
-
-  useFetchCargoVendor = true;
-  cargoHash = "sha256-onuopNpvSdEGFpLuKt10rQNjeeIa2hSzjS/J1z8IgVM=";
 
   nativeBuildInputs = [
     just
     dart-sass
+    nodejs
+    pnpm.configHook
   ];
 
+  pnpmDeps = pnpm.fetchDeps {
+    inherit (finalAttrs) pname version src;
+    hash = "sha256-J5R2Rd7LbC1l/tEDs8b/ztdsPYPoU8pv8jNrRD3/VEU=";
+  };
+
   dontUseJustInstall = true;
-  dontUseJustBuild = true;
   dontUseJustCheck = true;
 
-  preBuild = ''
-    just build-styles
+  installPhase = ''
+    runHook preInstall
+
+    mkdir -p "$out"
+    cp -r dist/* "$out"
+
+    runHook postInstall
   '';
 
   passthru.updateScript = nix-update-script {
@@ -50,4 +64,4 @@ rustPlatform.buildRustPackage {
     mainProgram = "isabelroses-website";
     maintainers = with lib.maintainers; [ isabelroses ];
   };
-}
+})
