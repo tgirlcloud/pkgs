@@ -14,7 +14,7 @@ let
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "isabelroses-website";
-  version = "0-unstable-2025-04-20";
+  version = "0-unstable-2025-04-19";
 
   src = fetchFromGitHub {
     owner = "isabelroses";
