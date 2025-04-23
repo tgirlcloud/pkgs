@@ -7,22 +7,21 @@
   nix-output-monitor,
   fetchFromGitHub,
   nix-update-script,
-  fetchpatch,
   use-nom ? true,
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "nh";
-  version = "4.0.0-beta.11-unstable-2025-04-22";
+  version = "4.0.0-unstable-2025-04-23";
 
   src = fetchFromGitHub {
     owner = "viperml";
     repo = "nh";
-    rev = "3262f3ccc8ea26bc04b13ebc3b13409224d436dc";
-    hash = "sha256-pph3fWc7ikLiB6LoYnoEGxwd37v93/0AW3ee+ZA/HwM=";
+    rev = "2e76c1e6296f8275b1ee992dd2bf618d73237316";
+    hash = "sha256-udE3iKTopiaRzNbIbGQuwAO5+MtRHgWJhP4kYETtaEg=";
   };
 
   useFetchCargoVendor = true;
-  cargoHash = "sha256-GnRLUV5dyQgcjBBQXzjW0dvfHqIrlBlIup4b7oL8InI=";
+  cargoHash = "sha256-alZFjeBJskp4vu+uaEy9tMkdS1aXcv8d6AQ8jeJKEOA=";
 
   nativeBuildInputs = [
     installShellFiles
@@ -53,12 +52,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
   patches = [
     # support for darwin system wide activation
     ./darwin-system-wide-activation.patch
-
-    # don't error on the existance of FLAKE in the environment if NH_FLAKE is set
-    (fetchpatch {
-      url = "https://patch-diff.githubusercontent.com/raw/viperML/nh/pull/235.patch";
-      hash = "sha256-eIGSb2D+rMdDwu4DbZG2Jw8xzZt/rAN7YsW/iKzJl/w=";
-    })
   ];
 
   env = {
