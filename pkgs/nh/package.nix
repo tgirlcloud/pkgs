@@ -28,11 +28,12 @@ rustPlatform.buildRustPackage (finalAttrs: {
     makeBinaryWrapper
   ];
 
-  preFixup = ''
+  postInstall = ''
     mkdir completions
-    $out/bin/nh completions bash > completions/nh.bash
-    $out/bin/nh completions zsh > completions/nh.zsh
-    $out/bin/nh completions fish > completions/nh.fish
+
+    for shell in bash zsh fish; do
+      NH_NO_CHECKS=1 $out/bin/nh completions $shell > completions/nh.$shell
+    done
 
     installShellCompletion completions/*
   '';
@@ -48,11 +49,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
         )
       }
   '';
-
-  patches = [
-    # support for darwin system wide activation
-    ./darwin-system-wide-activation.patch
-  ];
 
   env = {
     NH_REV = finalAttrs.src.rev;
