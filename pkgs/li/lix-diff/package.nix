@@ -11,8 +11,8 @@ rustPlatform.buildRustPackage {
   src = fetchFromGitHub {
     owner = "isabelroses";
     repo = "lix-diff";
-    rev = "8fe41ef1e05fb3ff240033bdaf8aaa31f7b20d92";
-    hash = "sha256-pSmSBx25VyV8ymWns29P0hbuFdSLxmAqr53S9adZPQs=";
+    rev = "5cf5e272e8ebe2946041b9caa899c5a338f8beee";
+    hash = "sha256-P6VB+PNPPBcjc28xEpuMrybLUGRDb2CrKKb++yzefgg=";
   };
 
   useFetchCargoVendor = true;
