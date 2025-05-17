@@ -124,7 +124,7 @@
 
       homeManagerModules = lib.mapAttrs (
         _:
-        lib.warn "homeManagerModules are deprecated and will be removed in the future, please use homeModules instead"
+        lib.warn "Flake attribute 'tgirlpkgs.homeManagerModules' is deprecated and will be removed in the future. Use 'tgirlpkgs.homeModules' instead."
       ) self.homeModules;
     };
 
