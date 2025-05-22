@@ -28,10 +28,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
     makeBinaryWrapper
   ];
 
-  patches = [
-    ./fix-remove-lix-required-features.patch
-  ];
-
   postInstall = ''
     mkdir completions
 
