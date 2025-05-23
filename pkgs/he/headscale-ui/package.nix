@@ -1,43 +1,30 @@
 {
   lib,
-  unzip,
   stdenv,
-  fetchurl,
+  fetchzip,
   nix-update-script,
 }:
-let
+stdenv.mkDerivation (finalAttrs: {
   pname = "headscale-ui";
-  version = "2025.03.21";
-in
-stdenv.mkDerivation {
-  inherit pname version;
+  version = "2025.05.22";
 
-  src = fetchurl {
-    url = "https://github.com/gurucomputing/${pname}/releases/download/${version}/headscale-ui.zip";
-    sha256 = "sha256-Rk/nY9G0uZZjsLFkrwwwLXVS4vBQQ7YEfhYCg9NM6cU=";
+  src = fetchzip {
+    url = "https://github.com/gurucomputing/headscale-ui/releases/download/${finalAttrs.version}/headscale-${finalAttrs.version}.tar.gz";
+    hash = "sha256-qLX8YW5jjy4K4et7dkS0Bvug+k3NVw0m2d2Q0wLE1J4=";
+    stripRoot = false;
   };
-
-  buildInputs = [ unzip ];
-
-  dontStrip = true;
-
-  unpackPhase = ''
-    runHook preUnpack
-    unzip $src
-    runHook postUnpack
-  '';
 
   installPhase = ''
     mkdir -p $out/share/
-    cp -r web/ $out/share/
+    cp -r * $out/share/
   '';
 
   passthru.updateScript = nix-update-script { };
 
   meta = {
-    description = "A web frontend for the headscale Tailscale-compatible coordination server";
+    description = "Web frontend for the headscale Tailscale-compatible coordination server";
     homepage = "https://github.com/gurucomputing/headscale-ui";
     license = lib.licenses.bsd3;
     maintainers = with lib.maintainers; [ isabelroses ];
   };
-}
+})
