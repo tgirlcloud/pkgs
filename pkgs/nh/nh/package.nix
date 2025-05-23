@@ -11,17 +11,17 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "nh";
-  version = "4.0.3-unstable-2025-05-21";
+  version = "4.1.0-unstable-2025-05-22";
 
   src = fetchFromGitHub {
     owner = "viperml";
     repo = "nh";
-    rev = "45048d3e9f183f3f09fddf667841b7327c04ad8f";
-    hash = "sha256-Ut9RZVAaKUD4A3RrXP5RhNVZ+LVy5mL4mMmiTDWaQE8=";
+    rev = "24c12228e1f1e4fc953e37283fe442ca169951ed";
+    hash = "sha256-LlMUdltEdGxVLDZRSDQn3/i/WWn7Jakdz4wQxLxzfZ8=";
   };
 
   useFetchCargoVendor = true;
-  cargoHash = "sha256-PFhlt8gX2Q9FCQSBAtQv+cpQ2Ayl06NcHirVNXuIoe0=";
+  cargoHash = "sha256-/tbmzGUd1b4oa+29+eFdkE4l8vxMoIdHx40YgErY9pY=";
 
   nativeBuildInputs = [
     installShellFiles
