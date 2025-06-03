@@ -1,11 +1,11 @@
 {
   lib,
   rustPlatform,
-  fastfetch,
+  fastfetchMinimal,
   makeWrapper,
   nix-update-script,
   fetchFromGitHub,
-  backends ? [ fastfetch ],
+  backends ? [ fastfetchMinimal ],
 }:
 rustPlatform.buildRustPackage {
   pname = "hyfetch";
