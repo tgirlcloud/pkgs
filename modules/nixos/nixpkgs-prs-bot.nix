@@ -41,6 +41,7 @@ in
       environmentFile = mkOption {
         type = lib.types.nullOr lib.types.path;
         default = null;
+        description = "Path to the environment file for ${poster} bot";
       };
     }));
 
