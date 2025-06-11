@@ -63,10 +63,10 @@
     "nixpkgs_2": {
       "locked": {
         "lastModified": 315532800,
-        "narHash": "sha256-lvaKRckKFtUXIQTiK1e/0JnZRlEm/y0olZwbkl8ArrY=",
-        "rev": "08fcb0dcb59df0344652b38ea6326a2d8271baff",
+        "narHash": "sha256-XmH4SRuqxpLNsXuu9qPlGBaHNNnxZW7ZkYrfismjewE=",
+        "rev": "a12f3a99614894502e73eb816e9e076b0ab05730",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.11pre812400.08fcb0dcb59d/nixexprs.tar.xz?rev=08fcb0dcb59df0344652b38ea6326a2d8271baff"
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.11pre812987.a12f3a996148/nixexprs.tar.xz?rev=a12f3a99614894502e73eb816e9e076b0ab05730"
       },
       "original": {
         "type": "tarball",
@@ -82,11 +82,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1749508207,
-        "narHash": "sha256-EHlfZyOywnFxU3f7bgaEio073LO/HwqQjdTQRKaqUuk=",
+        "lastModified": 1749531675,
+        "narHash": "sha256-UB8Mc88rW9frjpJ1Fj2ro7f07Gg8dX3uVXvMXnFR4CE=",
         "owner": "NuschtOS",
         "repo": "search",
-        "rev": "d547d7a3c877b545883ab7f826816626fc0311c7",
+        "rev": "4029d450d0266909ee52775849b7da54e79b328e",
         "type": "github"
       },
       "original": {
@@ -123,7 +123,7 @@
       },
       "locked": {
         "lastModified": 0,
-        "narHash": "sha256-GgUlYAUprfe8aagQe+T05t8Tc79N1hS9TuG3WL7n4og=",
+        "narHash": "sha256-ANY433RJzRi9Zc5AlkxIRLw9sODLG7alzNDNziMyEQg=",
         "path": "../.",
         "type": "path"
       },
