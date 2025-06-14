@@ -6,13 +6,13 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "lix-diff";
-  version = "1.0.1-unstable-2025-05-19";
+  version = "1.0.1-unstable-2025-06-13";
 
   src = fetchFromGitHub {
     owner = "isabelroses";
     repo = "lix-diff";
-    rev = "3d52194bc78f0d7478c6d1a900f2c806c643b995";
-    hash = "sha256-apjYXFdvxLZjhcN1wV7Y/LKNuWtWtCZM0h1VFg/znVo=";
+    rev = "a55f48a04a9f31b6c48bbd2c8c153559c2022821";
+    hash = "sha256-e6FkNR3IOdRCzvDLlelNYIk7Df/3gXKjrnnqsCzANd8=";
   };
 
   useFetchCargoVendor = true;
