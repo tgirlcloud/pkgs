@@ -5,7 +5,7 @@
   buildGoModule,
 }:
 let
-  version = "0.6.1";
+  version = "0.7.0";
 in
 buildGoModule {
   pname = "go-enum";
@@ -15,7 +15,7 @@ buildGoModule {
     owner = "abice";
     repo = "go-enum";
     rev = "refs/tags/v${version}";
-    hash = "sha256-bSnc2DiOsqj3yNopuhNlssDDy21n85jQx0g5XJW38Rc=";
+    hash = "sha256-rz6GdVqH3huf+dut1phZQ35hjOHYuKqmmLTkaETODko=";
   };
 
   vendorHash = "sha256-5jGip6LymwLR96OBlZaihP6vsTHKrlgx0/H6TJBbQB4=";
