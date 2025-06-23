@@ -11,13 +11,13 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "nh";
-  version = "4.1.2-unstable-2025-06-18";
+  version = "4.1.2-unstable-2025-06-22";
 
   src = fetchFromGitHub {
     owner = "viperml";
     repo = "nh";
-    rev = "4b39f8496d5bc4f86d0f256ca4b2d7dbcbd9fc00";
-    hash = "sha256-n5XvEaSanFe9g1AF6l2o+6OE8THpErU44pu6tt0c9PE=";
+    rev = "e5dbcf9d48257f4a116bc4746e0c59c78e08e161";
+    hash = "sha256-tArf9ek4DoR+5lcDlshGS/CjMjX8vMNfpZ1Ys98UrZM=";
   };
 
   useFetchCargoVendor = true;
