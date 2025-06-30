@@ -63,10 +63,10 @@
     "nixpkgs_2": {
       "locked": {
         "lastModified": 315532800,
-        "narHash": "sha256-j1B/jSIcFIX448mNqN99Yq+275Giu/f0m0uAUUwPrww=",
-        "rev": "80d50fc87924c2a0d346372d242c27973cf8cdbf",
+        "narHash": "sha256-0HRxGUoOMtOYnwlMWY0AkuU88WHaI3Q5GEILmsWpI8U=",
+        "rev": "a48741b083d4f36dd79abd9f760c84da6b4dc0e5",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.11pre821946.80d50fc87924/nixexprs.tar.xz?rev=80d50fc87924c2a0d346372d242c27973cf8cdbf"
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.11pre823094.a48741b083d4/nixexprs.tar.xz?rev=a48741b083d4f36dd79abd9f760c84da6b4dc0e5"
       },
       "original": {
         "type": "tarball",
@@ -123,7 +123,7 @@
       },
       "locked": {
         "lastModified": 0,
-        "narHash": "sha256-k44YDETLVhACJI+k0ycuTuZdB3jGaYMhaamjPinoQek=",
+        "narHash": "sha256-ZMNTZ2ruZxNJFmYIe40NNbrr7fMbOwh/TmkFbUwIaTg=",
         "path": "../.",
         "type": "path"
       },
