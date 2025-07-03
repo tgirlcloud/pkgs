@@ -103,7 +103,7 @@
         default = pkgs.callPackage ./shell.nix { };
       });
 
-      formatter = forAllSystems devSystems (pkgs: pkgs.nixfmt-rfc-style);
+      formatter = forAllSystems devSystems (pkgs: pkgs.nixfmt-tree);
 
       overlays.default = _: prev: import ./default.nix { pkgs = prev; };
 
