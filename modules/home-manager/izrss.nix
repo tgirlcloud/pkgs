@@ -53,22 +53,6 @@ in
     };
   };
 
-  imports = [
-    (lib.mkRenamedOptionModule
-      [
-        "programs"
-        "izrss"
-        "urls"
-      ]
-      [
-        "programs"
-        "izrss"
-        "settings"
-        "urls"
-      ]
-    )
-  ];
-
   config = mkIf cfg.enable {
     home.packages = [ cfg.package ];
 
