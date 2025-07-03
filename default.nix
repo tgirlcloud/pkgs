@@ -23,9 +23,8 @@ let
 
   packagesFiles = mergeAttrsList (mapAttrsToList packagesForShard (readDir baseDirectory));
 
-  callPackage = lib.callPackageWith (pkgs // packages);
-  callPackage' = file: callPackage file { };
-
-  packages = mapAttrs (_: callPackage') packagesFiles;
+  packages = lib.makeScope pkgs.newScope (
+    self: mapAttrs (_: lib.flip self.callPackage { }) packagesFiles
+  );
 in
 packages

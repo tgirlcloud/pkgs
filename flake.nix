@@ -47,9 +47,24 @@
 
           imports = [ (import file { tgirlpkgsSelf = self; }) ];
         };
+
     in
     {
-      packages = forAllSystems outputSystems (pkgs: import ./default.nix { inherit pkgs; });
+      packages = forAllSystems outputSystems (
+        pkgs:
+        lib.filterAttrs (
+          _: pkg:
+          let
+            isDerivation = lib.isDerivation pkg;
+            availableOnHost = lib.meta.availableOn pkgs.stdenv.hostPlatform pkg;
+            isBroken = pkg.meta.broken or false;
+          in
+          isDerivation && !isBroken && availableOnHost
+        ) self.legacyPackages.${pkgs.stdenv.hostPlatform.system}
+      );
+
+      # a raw unfilted scope of packages
+      legacyPackages = forAllSystems outputSystems (pkgs: import ./default.nix { inherit pkgs; });
 
       hydraJobs = forAllSystems cachedSystems (
         pkgs:
@@ -59,11 +74,11 @@
             isDerivation = lib.isDerivation pkg;
             availableOnHost = lib.meta.availableOn pkgs.stdenv.hostPlatform pkg;
             isCross = pkg.stdenv.buildPlatform != pkg.stdenv.targetPlatform;
-            broken = pkg.meta.broken or false;
+            isBroken = pkg.meta.broken or false;
             isCacheable = !(pkg.preferLocalBuild or false);
           in
-          isDerivation && (availableOnHost || isCross) && !broken && isCacheable
-        ) self.packages.${pkgs.stdenv.hostPlatform.system}
+          isDerivation && (availableOnHost || isCross) && !isBroken && isCacheable
+        ) self.legacyPackages.${pkgs.stdenv.hostPlatform.system}
       );
 
       # taken and slightly modified from
