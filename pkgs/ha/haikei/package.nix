@@ -6,7 +6,7 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "haikei";
-  version = "0.1.0";
+  version = "0-unstable-2025-06-29";
 
   src = fetchFromGitHub {
     owner = "comfysage";
@@ -28,7 +28,7 @@ rustPlatform.buildRustPackage {
     description = "tiny wallpaper helper";
     homepage = "https://github.com/comfysage/haikei";
     license = with lib.licenses; [ mit ];
-    maintainers = with lib.maintainers; [ comfysage ];
+    maintainers = [ { name = "comfysage"; } ];
     mainProgram = "haikei";
   };
 }
