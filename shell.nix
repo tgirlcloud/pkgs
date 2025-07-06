@@ -1,14 +1,14 @@
 {
-  nvfetcher,
+  nix-update,
   mkShellNoCC,
-  nixfmt-rfc-style,
+  nixfmt-tree,
   simple-http-server,
   writeShellApplication,
 }:
 mkShellNoCC {
   packages = [
-    nvfetcher
-    nixfmt-rfc-style
+    nix-update
+    nixfmt-tree
 
     (writeShellApplication {
       name = "docs";
