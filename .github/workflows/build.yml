@@ -38,6 +38,7 @@ jobs:
         with:
           source-url: https://install.lix.systems/lix/lix-installer-${{ matrix.system }}
           logger: pretty
+          diagnostic-endpoint: ""
 
       - name: Setup Attic
         uses: ryanccn/attic-action@v0.3.2
