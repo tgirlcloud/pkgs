@@ -5,7 +5,7 @@
   ...
 }:
 let
-  urlPrefix = "https://github.com/tgirlcloud/tgirlpkgs/blob/main/";
+  urlPrefix = "https://github.com/tgirlcloud/pkgs/blob/main/";
 in
 nuscht-search.mkMultiSearch {
   title = "tgirlpkgs Option Search";
