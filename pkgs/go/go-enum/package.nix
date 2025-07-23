@@ -5,7 +5,7 @@
   buildGoModule,
 }:
 let
-  version = "0.7.0";
+  version = "0.9.0";
 in
 buildGoModule {
   pname = "go-enum";
@@ -15,10 +15,10 @@ buildGoModule {
     owner = "abice";
     repo = "go-enum";
     rev = "refs/tags/v${version}";
-    hash = "sha256-rz6GdVqH3huf+dut1phZQ35hjOHYuKqmmLTkaETODko=";
+    hash = "sha256-09et1XQ0U1UYiqos4VoqIuatKdAMpL/Ib7Zc+XuvIEo=";
   };
 
-  vendorHash = "sha256-5jGip6LymwLR96OBlZaihP6vsTHKrlgx0/H6TJBbQB4=";
+  vendorHash = "sha256-iPY/fgGcd6HD9UHIwmY8SKTrsnzAjvFRscPMmwtapEU=";
 
   passthru.updateScript = nix-update-script { };
 
