@@ -3,7 +3,6 @@
   installShellFiles,
   lib,
   libGL,
-  libiconv,
   libxkbcommon,
   ncurses,
   openssl,
@@ -20,7 +19,7 @@
   fetchFromGitHub,
   nix-update-script,
 }:
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "wezterm";
   version = "tparse-0.7.0-unstable-2025-07-23";
 
@@ -40,40 +39,50 @@ rustPlatform.buildRustPackage rec {
     installShellFiles
     pkg-config
     python3
-  ] ++ lib.optional stdenv.hostPlatform.isDarwin perl;
+  ]
+  ++ lib.optional stdenv.hostPlatform.isDarwin perl;
 
-  buildInputs =
-    [
-      fontconfig
-      zlib
-      openssl
-    ]
-    ++ lib.optionals stdenv.hostPlatform.isLinux [
-      xorg.libX11
-      xorg.libxcb
-      libxkbcommon
-      wayland
-      xorg.xcbutil
-      xorg.xcbutilimage
-      xorg.xcbutilkeysyms
-      xorg.xcbutilwm # contains xcb-ewmh among others
-    ]
-    ++ lib.optionals stdenv.hostPlatform.isDarwin [
-      libiconv
-    ];
+  buildInputs = [
+    fontconfig
+    openssl
+    zlib
+  ]
+  ++ lib.optionals stdenv.hostPlatform.isLinux [
+    xorg.libX11
+    xorg.libxcb
+    libxkbcommon
+    wayland
+    xorg.xcbutil
+    xorg.xcbutilimage
+    xorg.xcbutilkeysyms
+    xorg.xcbutilwm # contains xcb-ewmh among others
+  ];
 
   postPatch = ''
-    echo "${version}" > .tag
-    # tests are failing with: Unable to exchange encryption keys
+    echo "${finalAttrs.version}" > .tag
+
+    # hash does not work well with NixOS
+    substituteInPlace assets/shell-integration/wezterm.sh \
+      --replace-fail 'hash wezterm 2>/dev/null' 'command type -P wezterm &>/dev/null' \
+      --replace-fail 'hash base64 2>/dev/null' 'command type -P base64 &>/dev/null' \
+      --replace-fail 'hash hostname 2>/dev/null' 'command type -P hostname &>/dev/null' \
+      --replace-fail 'hash hostnamectl 2>/dev/null' 'command type -P hostnamectl &>/dev/null'
+  ''
+  + lib.optionalString stdenv.hostPlatform.isDarwin ''
+    # many tests fail with: No such file or directory
     rm -r wezterm-ssh/tests
   '';
 
+  # dep: syntax causes build failures in rare cases
+  # https://github.com/rust-secure-code/cargo-auditable/issues/124
+  # https://github.com/wezterm/wezterm/blob/main/nix/flake.nix#L134
+  auditable = false;
+
   buildFeatures = [ "distro-defaults" ];
-  env.NIX_LDFLAGS = lib.optionalString stdenv.hostPlatform.isDarwin "-framework System";
 
   postInstall = ''
     mkdir -p $out/nix-support
-    echo "${passthru.terminfo}" >> $out/nix-support/propagated-user-env-packages
+    echo "${finalAttrs.passthru.terminfo}" >> $out/nix-support/propagated-user-env-packages
 
     install -Dm644 assets/icon/terminal.png $out/share/icons/hicolor/128x128/apps/org.wezfurlong.wezterm.png
     install -Dm644 assets/wezterm.desktop $out/share/applications/org.wezfurlong.wezterm.desktop
@@ -101,13 +110,18 @@ rustPlatform.buildRustPackage rec {
       cp -r assets/macos/WezTerm.app "$OUT_APP"
       rm $OUT_APP/*.dylib
       cp -r assets/shell-integration/* "$OUT_APP"
-      ln -s $out/bin/{wezterm,wezterm-mux-server,wezterm-gui,strip-ansi-escapes} "$OUT_APP"
+      # https://github.com/wezterm/wezterm/pull/6886
+      # macOS will only recognize our application bundle
+      # if the binaries are inside of it. Move them there
+      # and create symbolic links for them in bin/.
+      mv $out/bin/{wezterm,wezterm-mux-server,wezterm-gui,strip-ansi-escapes} "$OUT_APP"
+      ln -s "$OUT_APP"/{wezterm,wezterm-mux-server,wezterm-gui,strip-ansi-escapes} "$out/bin"
     '';
 
   passthru = {
     terminfo = runCommand "wezterm-terminfo" { nativeBuildInputs = [ ncurses ]; } ''
       mkdir -p $out/share/terminfo $out/nix-support
-      tic -x -o $out/share/terminfo ${src}/termwiz/data/wezterm.terminfo
+      tic -x -o $out/share/terminfo ${finalAttrs.src}/termwiz/data/wezterm.terminfo
     '';
 
     updateScript = nix-update-script {
@@ -125,4 +139,4 @@ rustPlatform.buildRustPackage rec {
     platforms = lib.platforms.unix;
     maintainers = with lib.maintainers; [ isabelroses ];
   };
-}
+})
