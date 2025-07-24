@@ -47,7 +47,6 @@
 
           imports = [ (import file { tgirlpkgsSelf = self; }) ];
         };
-
     in
     {
       packages = forAllSystems outputSystems (
@@ -93,11 +92,10 @@
               text = lib.concatStringsSep "\n" (
                 lib.mapAttrsToList (
                   name: pkg:
-                  if pkg ? updateScript && (lib.isList pkg.updateScript) && (lib.length pkg.updateScript) > 0 then
+                  if pkg ? updateScript && (lib.isList pkg.updateScript) then
                     lib.escapeShellArgs (
                       if (lib.match "nix-update|.*/nix-update" (lib.head pkg.updateScript) != null) then
-                        [ (lib.getExe pkgs.nix-update) ]
-                        ++ (lib.tail pkg.updateScript)
+                        pkg.updateScript
                         ++ [
                           "--commit"
                           name
@@ -106,8 +104,8 @@
                         pkg.updateScript
                     )
                   else
-                    builtins.toString pkg.updateScript or ""
-                ) self.packages.${pkgs.stdenv.hostPlatform.system}
+                    toString pkg.updateScript or "# no update script for ${name}"
+                ) self.legacyPackages.${pkgs.stdenv.hostPlatform.system}
               );
             }
           );
