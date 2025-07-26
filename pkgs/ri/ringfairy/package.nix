@@ -8,13 +8,13 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "ringfairy";
-  version = "0.1.3-alpha-unstable-2025-07-24";
+  version = "0.1.3-alpha-unstable-2025-07-25";
 
   src = fetchFromGitHub {
     owner = "k3rs3d";
     repo = "ringfairy";
-    rev = "54c0d73de9c20a47fd2dadd23d13fe395d434cfb";
-    hash = "sha256-Lb6nGASBDoYRfGfgsfrxcBMtrBVFfLFfHbN7UhENgNQ=";
+    rev = "760dee942f2d3af63d7c917d3c809a3a8f28e34a";
+    hash = "sha256-TsspkpJOwn/MT1ZiwONZ6nJAPUcZ5TxLhUltGV8KehI=";
   };
 
   cargoHash = "sha256-rdnTYMdymEqyLU/hG3uoQTT3SOS/SkEOSHJfxMHaPyI=";
