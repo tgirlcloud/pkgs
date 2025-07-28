@@ -11,8 +11,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
   src = fetchFromGitHub {
     owner = "tgirlcloud";
     repo = "locker";
-    rev = "12dd7627aaa3a0fed88679e40a6d0c818f3fa9e5";
-    hash = "sha256-NsX2PFi60BKXkS8kt2nexe5LMHD2lL9UE8DL4XWiSfQ=";
+    rev = "3ff5c7bab0e007c476849c8824c57cc169756b91";
+    hash = "sha256-lYjaha/CdpE/xDjRaC3nPtvAru8vywOONV4Oc4GzKJY=";
   };
 
   cargoHash = "sha256-XaSky3qSHi8L09jQaj118BqulLAyGP0fm4Menz/8u8g=";
