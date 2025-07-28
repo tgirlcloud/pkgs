@@ -29,6 +29,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
     homepage = "https://github.com/isabelroses/locker-lint";
     license = lib.licenses.eupl12;
     maintainers = with lib.maintainers; [ isabelroses ];
-    mainProgram = "locker-lint";
+    mainProgram = "locker";
   };
 })
