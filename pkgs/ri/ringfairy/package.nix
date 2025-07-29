@@ -8,16 +8,16 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "ringfairy";
-  version = "0.1.3-alpha-unstable-2025-07-28";
+  version = "0.2.0-alpha-unstable-2025-07-29";
 
   src = fetchFromGitHub {
     owner = "k3rs3d";
     repo = "ringfairy";
-    rev = "01f7bd2feaa123871d0214569f047c8563538988";
-    hash = "sha256-zQkxiBnqMBMnGUF4+3dgs58sip+GubCHuGUPIMrpVfQ=";
+    rev = "e21c68de023548896e6faa79d295121b5e9d64ca";
+    hash = "sha256-TanWLuaeTPM/1dvTvqRy5fqHTY0yf7IcjdV4Wh+BZ28=";
   };
 
-  cargoHash = "sha256-rdnTYMdymEqyLU/hG3uoQTT3SOS/SkEOSHJfxMHaPyI=";
+  cargoHash = "sha256-zBbFsxS0sjtSd+dKUCwzBdKDdPbxQr5X/4OQcQoPS/I=";
 
   buildInputs = [ openssl ];
   nativeBuildInputs = [ pkg-config ];
