@@ -6,13 +6,13 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "haikei";
-  version = "0-unstable-2025-06-29";
+  version = "0-unstable-2025-07-30";
 
   src = fetchFromGitHub {
     owner = "comfysage";
     repo = "haikei";
-    rev = "9c724d48c27ad0ccadde64e6610b329051954426";
-    hash = "sha256-c39hmUGq6BjtG7Rjui0W6M5VI/aSRw585P3Za3PFv6k=";
+    rev = "2710b16f3bb3ad73b316198927b0fbab3f291bf2";
+    hash = "sha256-6ADi1ZwZr8A0ThgjnXFggCPzaOyUzRATMVXznPzUHPc=";
   };
 
   cargoHash = "sha256-ogMGYB7iKh9SfRxGF+hS3CM4cHpcPKG2AABw55+MCTk=";
