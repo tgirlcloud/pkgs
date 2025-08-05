@@ -14,13 +14,13 @@ let
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "isabelroses-website";
-  version = "0-unstable-2025-08-03";
+  version = "0-unstable-2025-08-04";
 
   src = fetchFromGitHub {
     owner = "isabelroses";
     repo = "website";
-    rev = "076ff62e742d8f0216ce3f4abff4dc3c13ee661d";
-    hash = "sha256-uAPqFE6sLnkSk0492c1L0XxnTC2jfPgiqxk2lnpOayY=";
+    rev = "2f4327e9a01084b29d372f4282480360df1b25cc";
+    hash = "sha256-C2Q3pMFwwkOTQWknB4NSz3nyNG0ox83Yq7dQz0gsOTE=";
   };
 
   nativeBuildInputs = [
