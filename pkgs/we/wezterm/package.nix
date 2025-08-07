@@ -24,7 +24,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   version = "tparse-0.7.0-unstable-2025-07-30";
 
   src = fetchFromGitHub {
-    owner = "wez";
+    owner = "wezterm";
     repo = "wezterm";
     rev = "6a493f88fab06a792308e0c704790390fd3c6232";
     hash = "sha256-ilDUBkXKo3N83ew3I+Ic48SBjraCs3OyjVXlTItX0mU=";
