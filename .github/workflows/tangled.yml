@@ -1,8 +1,10 @@
 name: Tangle
 
 on:
-  push: {}
   workflow_dispatch: {}
+  push:
+    branches:
+      - main
 
 jobs:
   tangle:
