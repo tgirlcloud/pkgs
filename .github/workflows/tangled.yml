@@ -1,0 +1,15 @@
+name: Tangle
+
+on:
+  push: {}
+  workflow_dispatch: {}
+
+jobs:
+  tangle:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: gwennlbh/to-tangled@v0.3
+        with:
+          repo: tgirl.cloud/pkgs
+          ssh-key: ${{ secrets.TANGLED_KEY }}
