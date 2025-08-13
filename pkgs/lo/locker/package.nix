@@ -6,13 +6,13 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "locker";
-  version = "0-unstable-2025-08-01";
+  version = "0-unstable-2025-08-12";
 
   src = fetchFromGitHub {
     owner = "tgirlcloud";
     repo = "locker";
-    rev = "1f922929528463c622d52435471a50f9dd4b63ac";
-    hash = "sha256-fjDqsReDxW+8wdkco9RKWaCXyYzay3J3/BzjgZtF7z4=";
+    rev = "6b2a641992b67f3a8d847eda8a2a978f46f1439a";
+    hash = "sha256-BBY024wS6P4MkKaVl04L3rZDo9iu+Nu6Oi5gl8TKl/g=";
   };
 
   cargoHash = "sha256-XaSky3qSHi8L09jQaj118BqulLAyGP0fm4Menz/8u8g=";
