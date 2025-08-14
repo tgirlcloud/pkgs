@@ -7,7 +7,7 @@
   fetchFromGitHub,
 }:
 let
-  version = "0-unstable-2025-08-11";
+  version = "0-unstable-2025-08-13";
 in
 rustPlatform.buildRustPackage {
   pname = "blahaj";
@@ -16,11 +16,11 @@ rustPlatform.buildRustPackage {
   src = fetchFromGitHub {
     owner = "isabelroses";
     repo = "blahaj";
-    rev = "58dc2af4fca2398a919a735997c0e652d388b7f2";
-    hash = "sha256-VzcT1zLuaMSSmCxcUYiiHhyJGS2O11OevG0Rb5eZh2w=";
+    rev = "4407212443ce8f9c09af770fedb9a75192bb8a98";
+    hash = "sha256-keoc4rHVUZs1/qYhuckcIHEOsnKoPmKGTfoLqYqA6M4=";
   };
 
-  cargoHash = "sha256-mgUfLtyrCUiyiv7iFILv8pcKEojJlY1FPpD6q/i0FTM=";
+  cargoHash = "sha256-884hGHTnt5zT8TmcDxzJxw5AmEurAkojLOfonxZLQMQ=";
 
   buildInputs = [ openssl ];
   nativeBuildInputs = [ pkg-config ];
