@@ -41,12 +41,13 @@ jobs:
           diagnostic-endpoint: ""
 
       - name: Setup Attic
-        uses: ryanccn/attic-action@v0.3.2
+        uses: ryanccn/attic-action@v0.4.0
         with:
           inputs-from: flake.lock
           endpoint: https://cache.tgirl.cloud
           cache: tgirlcloud
           token: ${{ secrets.ATTIC_TOKEN }}
+          exclude-paths: "-(vendor|source)$"
 
       - name: Build from the matrix
         run: |
