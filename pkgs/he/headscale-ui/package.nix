@@ -6,11 +6,11 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "headscale-ui";
-  version = "2025.07.12";
+  version = "2025.08.23";
 
   src = fetchzip {
     url = "https://github.com/gurucomputing/headscale-ui/releases/download/${finalAttrs.version}/headscale-ui.zip";
-    hash = "sha256-MdwOhI4rtRMO9eRoL0zYLMDhNMe2vVmrYGkAnOyLfh0=";
+    hash = "sha256-66c4KC6tJath/A79idp4ypwd3y0VI80mG8/Gj/WwmnY=";
     stripRoot = false;
   };
 
