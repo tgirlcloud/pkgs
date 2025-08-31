@@ -6,12 +6,9 @@
   nix-update-script,
   fetchFromGitHub,
 }:
-let
-  version = "0-unstable-2025-08-28";
-in
-rustPlatform.buildRustPackage {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "blahaj";
-  inherit version;
+  version = "0-unstable-2025-08-28";
 
   src = fetchFromGitHub {
     owner = "isabelroses";
@@ -25,7 +22,7 @@ rustPlatform.buildRustPackage {
   buildInputs = [ openssl ];
   nativeBuildInputs = [ pkg-config ];
 
-  env.BUILD_REV = version;
+  env.BUILD_REV = finalAttrs.version;
 
   passthru.updateScript = nix-update-script {
     extraArgs = [
@@ -41,4 +38,4 @@ rustPlatform.buildRustPackage {
     maintainers = with lib.maintainers; [ isabelroses ];
     mainProgram = "blahaj";
   };
-}
+})

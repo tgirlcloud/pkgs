@@ -4,12 +4,9 @@
   fetchFromGitHub,
   nix-update-script,
 }:
-let
-  version = "0.2.0-unstable-2025-03-17";
-in
-buildGoModule {
+buildGoModule (finalAttrs: {
   pname = "izrss";
-  inherit version;
+  version = "0.2.0-unstable-2025-03-17";
 
   src = fetchFromGitHub {
     owner = "isabelroses";
@@ -23,7 +20,7 @@ buildGoModule {
   ldflags = [
     "-s"
     "-w"
-    "-X main.version=${version}"
+    "-X main.version=${finalAttrs.version}"
   ];
 
   passthru.updateScript = nix-update-script {
@@ -40,4 +37,4 @@ buildGoModule {
     maintainers = with lib.maintainers; [ isabelroses ];
     mainProgram = "izrss";
   };
-}
+})

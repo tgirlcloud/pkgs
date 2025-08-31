@@ -4,17 +4,14 @@
   nix-update-script,
   buildGoModule,
 }:
-let
-  version = "0.9.1";
-in
-buildGoModule {
+buildGoModule (finalAttrs: {
   pname = "go-enum";
-  inherit version;
+  version = "0.9.1";
 
   src = fetchFromGitHub {
     owner = "abice";
     repo = "go-enum";
-    rev = "refs/tags/v${version}";
+    rev = "refs/tags/v${finalAttrs.version}";
     hash = "sha256-1eAMCr7GeXwzHS1E9Udp0l2eMOiihhm7aAOQEyKNQa8=";
   };
 
@@ -29,4 +26,4 @@ buildGoModule {
     platforms = lib.platforms.unix;
     maintainers = with lib.maintainers; [ isabelroses ];
   };
-}
+})

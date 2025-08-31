@@ -6,9 +6,7 @@
   boost,
   capnproto,
   nix-update-script,
-
-  lixPackageSets,
-  the_lix ? lixPackageSets.latest.lix,
+  lix,
 }:
 clangStdenv.mkDerivation {
   pname = "lix-math";
@@ -26,7 +24,7 @@ clangStdenv.mkDerivation {
   nativeBuildInputs = [ pkg-config ];
 
   buildInputs = [
-    the_lix
+    lix
     boost
     capnproto
   ];

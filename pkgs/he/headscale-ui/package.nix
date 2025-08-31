@@ -15,8 +15,12 @@ stdenv.mkDerivation (finalAttrs: {
   };
 
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/share/
     cp -r * $out/share/
+
+    runHook postInstall
   '';
 
   passthru.updateScript = nix-update-script { };

@@ -4,17 +4,14 @@
   nix-update-script,
   fetchFromGitHub,
 }:
-let
-  version = "0.3.0";
-in
-rustPlatform.buildRustPackage {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "bellado";
-  inherit version;
+  version = "0.3.0";
 
   src = fetchFromGitHub {
     owner = "isabelroses";
     repo = "bellado";
-    rev = "refs/tags/v${version}";
+    rev = "refs/tags/v${finalAttrs.version}";
     hash = "sha256-evko1/qE4oRXTMdCOGuwJRUkRm7Sxb5MhQCTLgx5Z+4=";
   };
 
@@ -31,4 +28,4 @@ rustPlatform.buildRustPackage {
     maintainers = with lib.maintainers; [ isabelroses ];
     mainProgram = "bellado";
   };
-}
+})
