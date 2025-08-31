@@ -23,27 +23,26 @@ let
   cfg = config.services.nixpkgs-prs-bot;
 in
 {
-  options.services.nixpkgs-prs-bot =
-    {
-      enable = mkEnableOption "nixpkgs prs bot";
+  options.services.nixpkgs-prs-bot = {
+    enable = mkEnableOption "nixpkgs prs bot";
 
-      package = lib.mkOption {
-        type = lib.types.package;
-        default = tgirlpkgs.packages.${pkgs.stdenv.hostPlatform.system}.nixpkgs-prs;
-        description = "The package to use for blahaj";
-      };
-    }
-    // (lib.genAttrs posters (poster: {
-      enable = mkEnableOption poster // {
-        default = cfg.enable;
-      };
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = tgirlpkgs.packages.${pkgs.stdenv.hostPlatform.system}.nixpkgs-prs;
+      description = "The package to use for blahaj";
+    };
+  }
+  // (lib.genAttrs posters (poster: {
+    enable = mkEnableOption poster // {
+      default = cfg.enable;
+    };
 
-      environmentFile = mkOption {
-        type = lib.types.nullOr lib.types.path;
-        default = null;
-        description = "Path to the environment file for ${poster} bot";
-      };
-    }));
+    environmentFile = mkOption {
+      type = lib.types.nullOr lib.types.path;
+      default = null;
+      description = "Path to the environment file for ${poster} bot";
+    };
+  }));
 
   config = mkIf cfg.enable {
     systemd = mkMerge (
