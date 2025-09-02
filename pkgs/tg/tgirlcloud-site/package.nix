@@ -22,6 +22,8 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     nodejs-slim
   ];
 
+  env.ASTRO_TELEMETRY_DISABLED = 1;
+
   pnpmDeps = pnpm.fetchDeps {
     inherit (finalAttrs) pname version src;
     hash = "sha256-OQQtXsdroh6zRZkpoXK27V5ABZUM9hDNvFc1teZ8/y0=";

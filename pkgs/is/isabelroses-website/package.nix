@@ -39,6 +39,8 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   dontUseJustInstall = true;
   dontUseJustCheck = true;
 
+  env.ASTRO_TELEMETRY_DISABLED = 1;
+
   installPhase = ''
     runHook preInstall
 
