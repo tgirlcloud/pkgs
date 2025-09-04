@@ -16,13 +16,13 @@
 }:
 stdenvNoCC.mkDerivation {
   pname = "moonblast";
-  version = "0-unstable-2024-06-23";
+  version = "0-unstable-2025-09-03";
 
   src = fetchFromGitHub {
     owner = "comfysage";
     repo = "moonblast";
-    rev = "da195eda29f6a35eb03eb783e5cfeed3b922a02f";
-    hash = "sha256-YNv0FFcTryPvWLagV3I/mx2VszfSRguzhhOSbv1M19I=";
+    rev = "e264ee2421c6323fd8da9b1aefaf9b54e8c55a54";
+    hash = "sha256-SUwaNSXbs1s8m2Hdj7NtQjRDuNtanhvToCQAwUrYCf4=";
   };
 
   buildInputs = [ scdoc ];
