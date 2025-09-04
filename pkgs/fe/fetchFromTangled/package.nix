@@ -124,6 +124,7 @@ lib.makeOverridable (
   fetcher fetcherArgs
   // {
     meta = newMeta;
-    inherit owner repo rev;
+    inherit owner repo tag;
+    rev = revWithTag;
   }
 )
