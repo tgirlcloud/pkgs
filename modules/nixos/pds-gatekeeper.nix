@@ -63,9 +63,9 @@ in
       };
     };
 
-    environmentFile = lib.mkOption {
-      type = lib.types.nullOr lib.types.path;
-      default = null;
+    environmentFiles = lib.mkOption {
+      type = lib.types.listOf lib.types.path;
+      default = [ ];
       description = "The environment file to use for pds-gatekeeper";
     };
   };
@@ -83,7 +83,7 @@ in
           inherit (config.systemd.services.bluesky-pds.serviceConfig) User Group;
 
           Type = "simple";
-          EnvironmentFile = lib.mkIf (cfg.environmentFile != null) cfg.environmentFile;
+          EnvironmentFile = cfg.environmentFiles;
           Environment = lib.mapAttrsToList (k: v: "${k}=${if builtins.isInt v then toString v else v}") (
             lib.filterAttrs (_: v: v != null) cfg.settings
           );
