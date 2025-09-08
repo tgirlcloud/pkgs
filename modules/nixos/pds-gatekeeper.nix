@@ -59,6 +59,18 @@ in
             default = 8080;
             description = "The port to bind the gatekeeper to";
           };
+
+          GATEKEEPER_CREATE_ACCOUNT_PER_SECOND = lib.mkOption {
+            type = lib.types.int;
+            default = 300;
+            description = "The maximum number of account creation requests per second";
+          };
+
+          GATEKEEPER_CREATE_ACCOUNT_BURST = lib.mkOption {
+            type = lib.types.int;
+            default = 608;
+            description = "The maximum burst size for account creation requests";
+          };
         };
       };
     };

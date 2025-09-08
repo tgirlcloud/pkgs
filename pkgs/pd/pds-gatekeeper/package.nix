@@ -10,11 +10,11 @@ rustPlatform.buildRustPackage (finalAttrs: {
   src = fetchFromTangled {
     owner = "@baileytownsend.dev";
     repo = "pds-gatekeeper";
-    rev = "55f5af015ca990aff4d9d30d4a87a9bde27570de";
-    hash = "sha256-d/oWAWJBmBuB+0P3OlxoeOE3UAG2SJ3lBMK7J5Rh5L4=";
+    rev = "47a4df71a0e9c6ed2ae8397c4ec5e6deefdfc492";
+    hash = "sha256-xjIAVDh3wqtNZBhIqCUnBiRRY/WMiyDOcCGvHwSbu00=";
   };
 
-  cargoHash = "sha256-aaXOfrLftNZzyel+/+HcDYRQOqMpSr8qj1VkRaBwHAE=";
+  cargoHash = "sha256-ht3WEmuVzup/PKUIe++8F+TKRCh+NskDQfiKsMkYuH8=";
 
   meta = {
     description = "microservice that sits on the same server as the PDS to add some of the security that the entryway does";
