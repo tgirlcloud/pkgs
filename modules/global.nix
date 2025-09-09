@@ -14,7 +14,7 @@ in
   config = {
     nix.settings = mkIf config.tgirlpkgs.cache.enable {
       substituters = [ "https://cache.tgirl.cloud/tgirlcloud" ];
-      trusted-public-keys = [ "tgirlcloud:vcV9oxS9pLXyeu1dVnBabLalLlw0yJzu6PakQM372t0=" ];
+      trusted-public-keys = [ "tgirlcloud:EaOlHrpuOI6Zwmir3/MzqS9uA0Xn3gYr15/k/v0HIPo=" ];
     };
   };
 }
