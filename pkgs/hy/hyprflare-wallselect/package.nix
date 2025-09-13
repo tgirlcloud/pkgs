@@ -6,7 +6,7 @@
   scdoc,
   coreutils,
   libnotify,
-  rofi-wayland,
+  rofi,
   nix-update-script,
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
@@ -33,7 +33,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
         lib.makeBinPath [
           coreutils
           libnotify
-          rofi-wayland
+          rofi
         ]
       }"
   '';
