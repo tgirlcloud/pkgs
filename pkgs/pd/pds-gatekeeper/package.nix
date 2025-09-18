@@ -10,8 +10,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
   src = fetchFromTangled {
     owner = "@baileytownsend.dev";
     repo = "pds-gatekeeper";
-    rev = "47a4df71a0e9c6ed2ae8397c4ec5e6deefdfc492";
-    hash = "sha256-xjIAVDh3wqtNZBhIqCUnBiRRY/WMiyDOcCGvHwSbu00=";
+    rev = "ad11a87e88496cec6543b9c1db7b9e0ad9b69642";
+    hash = "sha256-GG7N8F9vLVKEbjuRyIeFXxROmopmSy3kDxXSGeWmU0M=";
   };
 
   cargoHash = "sha256-ht3WEmuVzup/PKUIe++8F+TKRCh+NskDQfiKsMkYuH8=";
