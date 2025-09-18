@@ -3,30 +3,34 @@
   pnpm,
   stdenvNoCC,
   nodejs-slim,
+  makeWrapper,
   fetchFromGitHub,
   nix-update-script,
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "pds-dash";
-  version = "0-unstable-2025-08-30";
+  version = "0-unstable-2025-09-18";
 
   src = fetchFromGitHub {
     owner = "tgirlcloud";
     repo = "pds-dash";
-    rev = "e1a221aa08c533faf30d2a595ec2f68a0cdee4d1";
-    hash = "sha256-iGOfjN4hWVTZcPNZ5Gw+2r2XXFssthvqqNS8f5bHpu8=";
+    rev = "07927f48e121182e9ee12c36689f471a571e07f0";
+    hash = "sha256-1PM32gLPOLyGJeCLG+EKCxK8NaoG0/3e+qd5o8fMYq4=";
   };
 
   nativeBuildInputs = [
     pnpm.configHook
+    makeWrapper
     nodejs-slim
   ];
 
   pnpmDeps = pnpm.fetchDeps {
     inherit (finalAttrs) pname version src;
-    hash = "sha256-pKIwSI/iBL8MV4OWFHsPySdSlJb2JqnAl5re1KI9wlo=";
+    hash = "sha256-fahMn3hTTZwa75PuUP0D1vhR38rovvTHRrixwKM2+ng=";
     fetcherVersion = 2;
   };
+
+  env.ASTRO_TELEMETRY_DISABLED = 1;
 
   buildPhase = ''
     runHook preBuild
@@ -40,7 +44,12 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     runHook preInstall
 
     mkdir -p $out
+
+    cp -r node_modules $out/node_modules
     cp -r dist/* $out
+
+    makeWrapper ${nodejs-slim}/bin/node $out/bin/pds-dash \
+      --add-flags "$out/server/entry.mjs"
 
     runHook postInstall
   '';
