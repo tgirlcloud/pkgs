@@ -6,6 +6,7 @@
   ...
 }:
 let
+  pds = config.services.bluesky-pds.settings;
   cfg = config.services.pds-gatekeeper;
 in
 {
@@ -17,6 +18,8 @@ in
       default = tgirlpkgs.packages.${pkgs.stdenv.hostPlatform.system}.pds-gatekeeper;
       description = "The package to use for pds-gatekeeper";
     };
+
+    setupNginx = lib.mkEnableOption "to set up a reverse proxy for pds-gatekeeper with nginx";
 
     settings = lib.mkOption {
       type = lib.types.submodule {
@@ -30,14 +33,14 @@ in
         options = {
           PDS_DATA_DIRECTORY = lib.mkOption {
             type = lib.types.nullOr lib.types.path;
-            default = config.services.bluesky-pds.settings.PDS_DATA_DIRECTORY;
+            default = pds.PDS_DATA_DIRECTORY;
             defaultText = "/var/lib/pds";
             description = "The directory where the PDS stores its data";
           };
 
           PDS_BASE_URL = lib.mkOption {
             type = lib.types.nullOr lib.types.str;
-            default = "https://localhost:${toString config.services.bluesky-pds.settings.PDS_PORT}";
+            default = "https://localhost:${toString pds.PDS_PORT}";
             defaultText = "https://localhost:3000";
             description = "The base URL for the PDS instance";
           };
@@ -83,6 +86,21 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    services.nginx = lib.mkIf cfg.setupNginx {
+      virtualHosts."${pds.PDS_HOSTNAME}".locations =
+        lib.genAttrs
+          [
+            "= /xrpc/com.atproto.server.getSession"
+            "= /xrpc/com.atproto.server.updateEmail"
+            "= /xrpc/com.atproto.server.createSession"
+            "= /xrpc/com.atproto.server.createAccount"
+            "= /@atproto/oauth-provider/~api/sign-in"
+          ]
+          (_: {
+            proxyPass = "http://${cfg.settings.GATEKEEPER_HOST}:${toString cfg.settings.GATEKEEPER_PORT}";
+          });
+    };
+
     systemd.services = {
       pds-gatekeeper = {
         description = "pds-gatekeeper";
