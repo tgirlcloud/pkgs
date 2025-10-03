@@ -9,13 +9,13 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "pds-dash";
-  version = "0-unstable-2025-09-18";
+  version = "0-unstable-2025-10-02";
 
   src = fetchFromGitHub {
     owner = "tgirlcloud";
     repo = "pds-dash";
-    rev = "07927f48e121182e9ee12c36689f471a571e07f0";
-    hash = "sha256-1PM32gLPOLyGJeCLG+EKCxK8NaoG0/3e+qd5o8fMYq4=";
+    rev = "c6c4f7c67ce6c3619cc801c145da1a143570e8a0";
+    hash = "sha256-eQWH+1qGUrsYJi5+qDQtbkoL/Jm0VbbrSEZ27S8p7Yo=";
   };
 
   nativeBuildInputs = [
