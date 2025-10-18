@@ -6,16 +6,16 @@
 }:
 buildGoModule (finalAttrs: {
   pname = "go-enum";
-  version = "0.9.1";
+  version = "0.9.2";
 
   src = fetchFromGitHub {
     owner = "abice";
     repo = "go-enum";
     rev = "refs/tags/v${finalAttrs.version}";
-    hash = "sha256-1eAMCr7GeXwzHS1E9Udp0l2eMOiihhm7aAOQEyKNQa8=";
+    hash = "sha256-VZH7xLEDqU8N7oU3tOWVdTABEQEp2mlh1NtTg22hzco=";
   };
 
-  vendorHash = "sha256-AlJzwJtQaJNqulw9alltwSw8gVEBx58cejlkgXYuOAI=";
+  vendorHash = "sha256-bqJ+KBUsJzTNqeshq3eXFImW/JYL7zmCEwcy2xQHJeE=";
 
   passthru.updateScript = nix-update-script { };
 
