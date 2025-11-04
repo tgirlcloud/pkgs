@@ -1,13 +1,4 @@
-# fetchFromTangled, <https://tangled.sh/@isabelroses.com/fetch-tangled/blob/main/fetcher.nix>
-#
-# this is really just a fork of fetchFromGitHub, but with a few changes due to
-# incompatibilities. furthermore, there is no such concept of private in
-# atproto, so all the private stuff has been removed.
-#
-# as of the time of writing too
-# `https://tangled.sh/@rockorager.dev/lsr/archive/v1.0.0.tar.gz` resolves to
-# `https://knot1.tangled.sh/did:plc:vk2bemsr3uxaw4fdzno3chsh/lsr/archive/v1.0.0.tar.gz.tar.gz`
-# which is an invalid url.
+# fetchFromTangled, <https://tangled.sh/isabelroses.com/fetch-tangled/blob/main/fetcher.nix>
 
 {
   lib,
