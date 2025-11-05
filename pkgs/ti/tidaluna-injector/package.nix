@@ -8,7 +8,7 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "TidaLuna";
-  version = "1.6.13-beta";
+  version = "1.6.13-beta-unstable-2025-10-15";
 
   src = fetchFromGitHub {
     owner = "Inrixia";
