@@ -9,12 +9,14 @@
 
 lib.makeOverridable (
   {
-    domain ? "tangled.sh",
+    domain ? "tangled.org",
     owner,
     repo,
     rev ? null,
     tag ? null,
-    name ? repoRevToNameMaybe repo (lib.revOrTag rev tag) "tangled",
+
+    # TODO: add back when doing FP
+    # name ? repoRevToNameMaybe repo (lib.revOrTag rev tag) "tangled",
 
     # fetchgit stuff
     fetchSubmodules ? false,
@@ -24,6 +26,7 @@ lib.makeOverridable (
     fetchLFS ? false,
     sparseCheckout ? [ ],
 
+    passthru ? { },
     meta ? { },
     ...
   }@args:
@@ -79,10 +82,10 @@ lib.makeOverridable (
       else
         fetchzip;
 
-    revWithTag = if tag != null then "refs%2Ftags%2F${tag}" else rev;
-
     fetcherArgs =
-      (
+      finalAttrs:
+      passthruAttrs
+      // (
         if useFetchGit then
           {
             inherit
@@ -95,27 +98,50 @@ lib.makeOverridable (
               leaveDotGit
               ;
             url = baseUrl;
+            inherit passthru;
+            derivationArgs = {
+              inherit
+                domain
+                owner
+                repo
+                ;
+            };
           }
         else
+          let
+            revWithTag = finalAttrs.rev;
+          in
           {
             url = "${baseUrl}/archive/${revWithTag}";
             extension = "tar.gz";
 
+            derivationArgs = {
+              inherit
+                domain
+                owner
+                repo
+                tag
+                ;
+              rev = fetchgit.getRevWithTag {
+                inherit (finalAttrs) tag;
+                rev = finalAttrs.revCustom;
+              };
+              revCustom = rev;
+            };
+
             passthru = {
               gitRepoUrl = baseUrl;
-            };
+            }
+            // passthru;
           }
       )
-      // passthruAttrs
       // {
-        inherit name;
+        name =
+          args.name
+            or (repoRevToNameMaybe finalAttrs.repo (lib.revOrTag finalAttrs.revCustom finalAttrs.tag) "github");
+        meta = newMeta;
       };
   in
 
   fetcher fetcherArgs
-  // {
-    meta = newMeta;
-    inherit owner repo tag;
-    rev = revWithTag;
-  }
 )
