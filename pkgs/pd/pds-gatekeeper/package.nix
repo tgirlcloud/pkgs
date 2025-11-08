@@ -5,13 +5,13 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "pds-gatekeeper";
-  version = "0-unstable-2025-09-03";
+  version = "0-unstable-2025-10-07";
 
   src = fetchFromTangled {
-    owner = "baileytownsend.dev";
+    owner = "@baileytownsend.dev";
     repo = "pds-gatekeeper";
-    rev = "ad11a87e88496cec6543b9c1db7b9e0ad9b69642";
-    hash = "sha256-GG7N8F9vLVKEbjuRyIeFXxROmopmSy3kDxXSGeWmU0M=";
+    rev = "3d3b821be3a57544b67024353c43ba7f391a6ec1";
+    hash = "sha256-JdhPDpEXzy6CovNGbIMQzzmRtuJoW5LvydpeDNFFpSs=";
   };
 
   cargoHash = "sha256-ht3WEmuVzup/PKUIe++8F+TKRCh+NskDQfiKsMkYuH8=";
