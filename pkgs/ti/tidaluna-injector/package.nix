@@ -8,19 +8,19 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "TidaLuna";
-  version = "1.6.14-beta-unstable-2025-11-05";
+  version = "1.6.15-beta-unstable-2025-11-08";
 
   src = fetchFromGitHub {
     owner = "Inrixia";
     repo = "TidaLuna";
-    rev = "649bdd566fb5dcc1b45a3d5ef4d3a81ddbc333cd";
-    hash = "sha256-m9M2MdX2yygsCNfH0P56aeJtEt4ax/t/cOhk4Mehs5c=";
+    rev = "c996cd055a647d711badaebc7db9e5a377c6b9ce";
+    hash = "sha256-sL3j250M3Xbpqy0yygdFbrl4s94jqzW2U0te2vVgIL0=";
   };
 
   pnpmDeps = pnpm.fetchDeps {
     inherit (finalAttrs) pname src version;
     fetcherVersion = 2;
-    hash = "sha256-H5dIpxrn++BdxBk/rjIpPttuLkZ/3VjsQAh1DHOk3Rs=";
+    hash = "sha256-ZuwEiqhIzZ+4v93T/gMGj2ngl4Jpjk0PG70z+x4RLew=";
   };
 
   nativeBuildInputs = [
