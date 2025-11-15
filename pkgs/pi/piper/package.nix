@@ -7,7 +7,7 @@
 }:
 buildGoModule (finalAttrs: {
   pname = "piper";
-  version = "0.0.0";
+  version = "0-unstable-2025-11-12";
 
   src = fetchFromGitHub {
     owner = "teal-fm";
