@@ -67,7 +67,7 @@ stdenv.mkDerivation (finalAttrs: {
       name = "cake-wallet";
       desktopName = "Cake Wallet";
       comment = "Secure cryptocurrency wallet";
-      exec = "cake_wallet";
+      exec = "cake-wallet";
       icon = "cake-wallet";
       categories = [
         "Office"
@@ -84,8 +84,9 @@ stdenv.mkDerivation (finalAttrs: {
     mkdir -p $out/{bin,opt/cakewallet}
     cp -r ./* $out/opt/cakewallet/
 
-    # link the main executable
-    ln -s $out/opt/cakewallet/cake_wallet $out/bin/cake_wallet
+    # wrap the main binary
+    makeWrapper $out/opt/cakewallet/cake_wallet $out/bin/cake-wallet \
+      --prefix LD_LIBRARY_PATH : "$out/opt/cakewallet/lib:${lib.makeLibraryPath finalAttrs.buildInputs}"
 
     # get some icons
     mkdir -p $out/share/icons/hicolor/256x256/apps
@@ -104,6 +105,6 @@ stdenv.mkDerivation (finalAttrs: {
     license = lib.licenses.mit;
     platforms = lib.platforms.linux;
     maintainers = with lib.maintainers; [ isabelroses ];
-    mainProgram = "cake_wallet";
+    mainProgram = "cake-wallet";
   };
 })
