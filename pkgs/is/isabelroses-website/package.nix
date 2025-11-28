@@ -13,13 +13,13 @@ let
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "isabelroses-website";
-  version = "0-unstable-2025-11-25";
+  version = "0-unstable-2025-11-27";
 
   src = fetchFromGitHub {
     owner = "isabelroses";
     repo = "website";
-    rev = "8f90c573f90e02cf8bcd701dae0368c0b44d69a1";
-    hash = "sha256-iyFdaDtkHiLx+GNluMgE3CA4Zorrf/FK8H8H4NywZ8c=";
+    rev = "204b896fe67ef6abc9c45cd3b532e8b6e411e3e8";
+    hash = "sha256-fIePTaQP0SHGJz/FTs/7xVCp/SpD1NvHCtQ7D8vBR4A=";
   };
 
   nativeBuildInputs = [
@@ -30,7 +30,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   pnpmDeps = pnpm.fetchDeps {
     inherit (finalAttrs) pname version src;
-    hash = "sha256-LaBJVz2GxnJCpiw1Llk9LFjbdG0GRCeJvxdRnc68UwA=";
+    hash = "sha256-8isbFWIOlJgzK754FU5VEgkhG/WDRuLpNGuKq55SsLY=";
     fetcherVersion = 2;
   };
 
