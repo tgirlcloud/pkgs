@@ -29,7 +29,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   src = fetchzip {
     url = "https://github.com/cake-tech/cake_wallet/releases/download/v${finalAttrs.version}/Cake_Wallet_v${finalAttrs.version}_Linux.tar.xz";
-    hash = "sha256-ZQygqzmeqVAbW5dSTDwyA3LtJVlvRVyvSZi6wXFt0J4=";
+    hash = "sha256-Jfaf0//x06HVEt0U0CT+4gxbaXdXptJIJrl1vdkEXgY=";
   };
 
   nativeBuildInputs = [
