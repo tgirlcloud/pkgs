@@ -8,13 +8,13 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "TidaLuna";
-  version = "1.7.0-beta-unstable-2025-11-20";
+  version = "1.7.0-beta-unstable-2025-11-28";
 
   src = fetchFromGitHub {
     owner = "Inrixia";
     repo = "TidaLuna";
-    rev = "aa0125d933537001a268d62d688d4bdae4f09963";
-    hash = "sha256-9+9EjH6lNfxAVjS7+XO09MgAD+KYmVA3sXs5FlUsg/o=";
+    rev = "cf5f5cadc43d9106c0e595f5f7687755335671c5";
+    hash = "sha256-Uf3ofvgt2c7J7hIjXJkwwnHRCB9iRwLn7h+vMwxwQKM=";
   };
 
   pnpmDeps = pnpm.fetchDeps {
