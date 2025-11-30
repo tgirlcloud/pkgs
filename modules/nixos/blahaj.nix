@@ -36,6 +36,7 @@ in
           Type = "simple";
           DynamicUser = true;
           EnvironmentFile = lib.mkIf (cfg.environmentFile != null) cfg.environmentFile;
+          StateDirectory = "blahaj";
           ExecStart = lib.getExe cfg.package;
           Restart = "always";
 
