@@ -21,7 +21,7 @@
   copyDesktopItems,
   makeDesktopItem,
   makeBinaryWrapper,
-  nix-update-script,
+  writeScript,
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "cake-wallet";
@@ -96,7 +96,9 @@ stdenv.mkDerivation (finalAttrs: {
     runHook postInstall
   '';
 
-  passthru.updateScript = nix-update-script { };
+  passthru.updateScript = writeScript "cake-wallet-update" (
+    builtins.readFile ./update-cake-wallet.sh
+  );
 
   meta = {
     description = "Open-source cryptocurrency wallet";
