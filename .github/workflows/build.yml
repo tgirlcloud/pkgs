@@ -43,7 +43,7 @@ jobs:
           endpoint: https://cache.tgirl.cloud
           cache: tgirlcloud
           token: ${{ secrets.ATTIC_TOKEN }}
-          exclude-paths: "-(vendor|source|pnpm-deps)$"
+          exclude-paths: "(-(vendor(-staging)?|source|(npm|pnpm)-deps)$)|electron"
 
       - name: Build from the matrix
         run: |
