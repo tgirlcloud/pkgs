@@ -1,16 +1,14 @@
 {
   lib,
+  pnpm,
   just,
-  stdenvNoCC,
   nodejs_22,
-  pnpm_10,
+  stdenvNoCC,
+  fetchPnpmDeps,
+  pnpmConfigHook,
   fetchFromGitHub,
   nix-update-script,
 }:
-let
-  nodejs = nodejs_22;
-  pnpm = pnpm_10.override { inherit nodejs; };
-in
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "isabelroses-website";
   version = "0-unstable-2025-12-14";
@@ -24,11 +22,12 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [
     just
-    nodejs
-    pnpm.configHook
+    pnpm
+    nodejs_22
+    pnpmConfigHook
   ];
 
-  pnpmDeps = pnpm.fetchDeps {
+  pnpmDeps = fetchPnpmDeps {
     inherit (finalAttrs) pname version src;
     hash = "sha256-0Cly8AhvYie3ppak0fYYCHMcEScxejwZ6VpK6ekALOE=";
     fetcherVersion = 2;
