@@ -2,8 +2,10 @@
   lib,
   pnpm,
   stdenvNoCC,
-  nodejs-slim,
   makeWrapper,
+  nodejs-slim,
+  fetchPnpmDeps,
+  pnpmConfigHook,
   fetchFromGitHub,
   nix-update-script,
 }:
@@ -19,12 +21,13 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   };
 
   nativeBuildInputs = [
-    pnpm.configHook
-    makeWrapper
+    pnpm
     nodejs-slim
+    makeWrapper
+    pnpmConfigHook
   ];
 
-  pnpmDeps = pnpm.fetchDeps {
+  pnpmDeps = fetchPnpmDeps {
     inherit (finalAttrs) pname version src;
     hash = "sha256-+yX0Bfw5HC74IMCO+zr6ZFqr8c6NOFa7gD15PmU0nYI=";
     fetcherVersion = 2;

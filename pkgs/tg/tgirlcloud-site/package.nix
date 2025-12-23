@@ -1,8 +1,10 @@
 {
   lib,
   pnpm,
-  nodejs-slim,
   stdenvNoCC,
+  nodejs-slim,
+  fetchPnpmDeps,
+  pnpmConfigHook,
   fetchFromGitHub,
   nix-update-script,
 }:
@@ -18,13 +20,14 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   };
 
   nativeBuildInputs = [
-    pnpm.configHook
+    pnpm
     nodejs-slim
+    pnpmConfigHook
   ];
 
   env.ASTRO_TELEMETRY_DISABLED = 1;
 
-  pnpmDeps = pnpm.fetchDeps {
+  pnpmDeps = fetchPnpmDeps {
     inherit (finalAttrs) pname version src;
     hash = "sha256-mOanv2y4rRG5CGFUxq4LvLWjJ+/CnwIA5rnFZtZ2j2k=";
     fetcherVersion = 2;
