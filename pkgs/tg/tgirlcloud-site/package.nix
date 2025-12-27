@@ -18,13 +18,13 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   };
 
   nativeBuildInputs = [
-    pnpm.configHook
+    pnpmConfigHook
     nodejs-slim
   ];
 
   env.ASTRO_TELEMETRY_DISABLED = 1;
 
-  pnpmDeps = pnpm.fetchDeps {
+  pnpmDeps = fetchPnpmDeps {
     inherit (finalAttrs) pname version src;
     hash = "sha256-mOanv2y4rRG5CGFUxq4LvLWjJ+/CnwIA5rnFZtZ2j2k=";
     fetcherVersion = 2;
