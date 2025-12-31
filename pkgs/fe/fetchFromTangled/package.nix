@@ -7,7 +7,35 @@
   fetchzip,
 }:
 
-lib.makeOverridable (
+let
+
+  useFetchGitArgsDefault = {
+    deepClone = false;
+    fetchSubmodules = false; # This differs from fetchgit's default
+    fetchLFS = false;
+    forceFetchGit = false;
+    leaveDotGit = null;
+    rootDir = "";
+    sparseCheckout = null;
+  };
+  useFetchGitArgsDefaultNullable = {
+    leaveDotGit = false;
+    sparseCheckout = [ ];
+  };
+  useFetchGitargsDefaultNonNull = useFetchGitArgsDefault // useFetchGitArgsDefaultNullable;
+  excludeUseFetchGitArgNames = [
+    "forceFetchGit"
+  ];
+
+  faUseFetchGit = lib.mapAttrs (_: _: true) useFetchGitArgsDefault;
+
+  adjustFunctionArgs = f: lib.setFunctionArgs f (faUseFetchGit // lib.functionArgs f);
+
+  decorate = f: lib.makeOverridable (adjustFunctionArgs f);
+
+in
+
+decorate (
   {
     domain ? "tangled.org",
     owner,
@@ -17,14 +45,6 @@ lib.makeOverridable (
 
     # TODO: add back when doing FP
     # name ? repoRevToNameMaybe repo (lib.revOrTag rev tag) "tangled",
-
-    # fetchgit stuff
-    fetchSubmodules ? false,
-    leaveDotGit ? false,
-    deepClone ? false,
-    forceFetchGit ? false,
-    fetchLFS ? false,
-    sparseCheckout ? [ ],
 
     passthru ? { },
     meta ? { },
@@ -36,6 +56,16 @@ lib.makeOverridable (
   )) "fetchFromTangled requires one of either `rev` or `tag` to be provided (not both).";
 
   let
+
+    useFetchGit =
+      lib.mapAttrs (
+        name: nonNullDefault:
+        if args ? ${name} && (useFetchGitArgsDefaultNullable ? ${name} -> args.${name} != null) then
+          args.${name}
+        else
+          nonNullDefault
+      ) useFetchGitargsDefaultNonNull != useFetchGitargsDefaultNonNull;
+    useFetchGitArgsWDPassing = lib.overrideExisting (removeAttrs useFetchGitArgsDefault excludeUseFetchGitArgNames) args;
 
     position = (
       if args.meta.description or null != null then
@@ -58,18 +88,18 @@ lib.makeOverridable (
         position = "${position.file}:${toString position.line}";
       };
 
-    passthruAttrs = removeAttrs args [
-      "domain"
-      "owner"
-      "repo"
-      "tag"
-      "rev"
-      "fetchSubmodules"
-      "forceFetchGit"
-    ];
-
-    useFetchGit =
-      fetchSubmodules || leaveDotGit || deepClone || forceFetchGit || fetchLFS || (sparseCheckout != [ ]);
+    passthruAttrs = removeAttrs args (
+      [
+        "domain"
+        "owner"
+        "repo"
+        "tag"
+        "rev"
+        "fetchSubmodules"
+        "forceFetchGit"
+      ]
+      ++ (if useFetchGit then excludeUseFetchGitArgNames else lib.attrNames faUseFetchGit)
+    );
 
     # We prefer fetchzip in cases we don't need submodules as the hash
     # is more stable in that case.
@@ -87,16 +117,9 @@ lib.makeOverridable (
       passthruAttrs
       // (
         if useFetchGit then
-          {
-            inherit
-              tag
-              rev
-              deepClone
-              fetchSubmodules
-              sparseCheckout
-              fetchLFS
-              leaveDotGit
-              ;
+          useFetchGitArgsWDPassing
+          // {
+            inherit tag rev;
             url = baseUrl;
             inherit passthru;
             derivationArgs = {
@@ -137,8 +160,9 @@ lib.makeOverridable (
       )
       // {
         name =
-          args.name
-            or (repoRevToNameMaybe finalAttrs.repo (lib.revOrTag finalAttrs.revCustom finalAttrs.tag) "github");
+          args.name or (repoRevToNameMaybe finalAttrs.repo (lib.revOrTag finalAttrs.revCustom finalAttrs.tag)
+            "tangled"
+          );
         meta = newMeta;
       };
   in
