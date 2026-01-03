@@ -29,8 +29,8 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   pnpmDeps = fetchPnpmDeps {
     inherit (finalAttrs) pname version src;
-    hash = "sha256-+yX0Bfw5HC74IMCO+zr6ZFqr8c6NOFa7gD15PmU0nYI=";
-    fetcherVersion = 2;
+    hash = "sha256-8nnDM7R2+0KYp4DLJQtOGTeWwpSIHkwpo7SSvSX/sqE=";
+    fetcherVersion = 3;
   };
 
   env.ASTRO_TELEMETRY_DISABLED = 1;
