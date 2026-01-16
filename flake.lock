@@ -2,11 +2,11 @@
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1768364046,
-        "narHash": "sha256-u38e4y+yRMRM2aU+egqDusQjWVsNK7diO9xicQk6Kxc=",
-        "rev": "ea30586ee015f37f38783006a9bc9e4aa64d7d61",
+        "lastModified": 1768395095,
+        "narHash": "sha256-wufp5c0nWh/87f9eK7xy1eZXms5zd4yl6S4SR+LfA08=",
+        "rev": "13868c071cc73a5e9f610c47d7bb08e5da64fdd5",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.05pre927437.ea30586ee015/nixexprs.tar.xz?lastModified=1768364046&rev=ea30586ee015f37f38783006a9bc9e4aa64d7d61"
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.05pre927565.13868c071cc7/nixexprs.tar.xz?lastModified=1768395095&rev=13868c071cc73a5e9f610c47d7bb08e5da64fdd5"
       },
       "original": {
         "type": "tarball",
