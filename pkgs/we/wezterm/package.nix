@@ -21,13 +21,13 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "wezterm";
-  version = "tparse-0.7.0-unstable-2026-01-09";
+  version = "tparse-0.7.0-unstable-2026-01-15";
 
   src = fetchFromGitHub {
     owner = "wezterm";
     repo = "wezterm";
-    rev = "6e02c91e6b4f14d8df81d2819807212807cc5d5f";
-    hash = "sha256-5KGSAhblAyBT1ppMaGlI94wMGl4/NpLHK7VFMYF+FV4=";
+    rev = "f3602d2b219eb8209b8108e91c453cb685234fbc";
+    hash = "sha256-RBRSPKHBsAMPEZX9MUD4CcE3UqEoFHD4aE6Ei3hkOho=";
     fetchSubmodules = true;
   };
 
