@@ -11,13 +11,13 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "pds-dash";
-  version = "0-unstable-2026-01-04";
+  version = "0-unstable-2026-01-16";
 
   src = fetchFromGitHub {
     owner = "tgirlcloud";
     repo = "pds-dash";
-    rev = "5f83cb06b11723416153dab02545021ee688211f";
-    hash = "sha256-mYNdckboCxC+UDF/Sp0xARNCMKn8kVc7VKcxEvEWppg=";
+    rev = "1170cac2f11be12686b6c1ab30c3ff46206b3461";
+    hash = "sha256-QYbLVnI3ctcI3EfkUwY7v5emxKzRhrC7cex+JCRF7ys=";
   };
 
   nativeBuildInputs = [
@@ -29,7 +29,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   pnpmDeps = fetchPnpmDeps {
     inherit (finalAttrs) pname version src;
-    hash = "sha256-8nnDM7R2+0KYp4DLJQtOGTeWwpSIHkwpo7SSvSX/sqE=";
+    hash = "sha256-FkqNCT5KvCAphwFiWrzs8QOQSryfHBFTq9T6qeNRlNs=";
     fetcherVersion = 3;
   };
 
