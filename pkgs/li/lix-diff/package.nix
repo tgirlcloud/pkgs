@@ -6,16 +6,16 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "lix-diff";
-  version = "1.1.1-unstable-2025-12-05";
+  version = "1.2.0-unstable-2026-01-24";
 
   src = fetchFromGitHub {
     owner = "isabelroses";
     repo = "lix-diff";
-    rev = "321455334189f269afd24f6ef656d194509607f1";
-    hash = "sha256-uZd8xoQWsvJCmHtxtKJzKtaupUdXMXKWqSjXnK/BZco=";
+    rev = "9db8e53760fcb25f0f0b1ed7425f80adce9d205a";
+    hash = "sha256-ehASke8ZpvHkQI9bCV3/9i1QG67hjSIMoIMQDlbODxU=";
   };
 
-  cargoHash = "sha256-ydB65V879tW42FXSgdoUDeQbovsVf8qXku9uW4mqAfs=";
+  cargoHash = "sha256-ghwCwIg0PDfUfiHnwiUy8kNjPEgVWk92zA5ZnlD8BO8=";
 
   passthru.updateScript = nix-update-script {
     extraArgs = [
