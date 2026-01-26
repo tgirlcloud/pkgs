@@ -8,13 +8,13 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "purr";
-  version = "1.4.0-unstable-2025-05-19";
+  version = "1.4.0-unstable-2026-01-25";
 
   src = fetchFromGitHub {
     owner = "uncenter";
     repo = "purr";
-    rev = "2ada4702b390237e4ef18715e2331a0da3fc4667";
-    hash = "sha256-e0fdzHRZL5efXzGCzOBh1y9w75fwFsPR0OlqDKWF5V0=";
+    rev = "e2642185231d36f84afd76ddf4afe8abdb19a54a";
+    hash = "sha256-oQX5jDwChQIgskwUB5snScn5ZDmLlQedfaFJYIl7PDk=";
   };
 
   cargoHash = "sha256-vMfve6/8qMAHIY3h93OXMWx1toX7pfPja0UdC3Y6V9g=";
