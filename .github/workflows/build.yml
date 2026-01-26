@@ -37,7 +37,7 @@ jobs:
         uses: samueldr/lix-gha-installer-action@v2025-10-27
 
       - name: Setup Attic
-        uses: ryanccn/attic-action@v0.4.0
+        uses: ryanccn/attic-action@v0.4.1
         with:
           inputs-from: flake.lock
           endpoint: https://cache.tgirl.cloud
