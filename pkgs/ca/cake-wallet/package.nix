@@ -10,12 +10,18 @@
   harfbuzz,
   gdk-pixbuf,
   atk,
-  xorg,
   libGL,
   libepoxy,
   openssl,
   sqlite,
   libgcrypt,
+  libx11,
+  libxcursor,
+  libxinerama,
+  libxrandr,
+  libxi,
+  libxext,
+  libxfixes,
   lz4,
   libgpg-error,
   copyDesktopItems,
@@ -46,13 +52,13 @@ stdenv.mkDerivation (finalAttrs: {
     harfbuzz
     gdk-pixbuf
     atk
-    xorg.libX11
-    xorg.libXcursor
-    xorg.libXinerama
-    xorg.libXrandr
-    xorg.libXi
-    xorg.libXext
-    xorg.libXfixes
+    libx11
+    libxcursor
+    libxinerama
+    libxrandr
+    libxi
+    libxext
+    libxfixes
     libGL
     libepoxy
     openssl

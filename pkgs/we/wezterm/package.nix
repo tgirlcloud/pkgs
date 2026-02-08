@@ -14,7 +14,12 @@
   stdenv,
   vulkan-loader,
   wayland,
-  xorg,
+  libx11,
+  libxcb,
+  libxcb-util,
+  libxcb-image,
+  libxcb-keysyms,
+  libxcb-wm,
   zlib,
   fetchFromGitHub,
   nix-update-script,
@@ -48,14 +53,14 @@ rustPlatform.buildRustPackage (finalAttrs: {
     zlib
   ]
   ++ lib.optionals stdenv.hostPlatform.isLinux [
-    xorg.libX11
-    xorg.libxcb
+    libx11
+    libxcb
     libxkbcommon
     wayland
-    xorg.xcbutil
-    xorg.xcbutilimage
-    xorg.xcbutilkeysyms
-    xorg.xcbutilwm # contains xcb-ewmh among others
+    libxcb-util
+    libxcb-image
+    libxcb-keysyms
+    libxcb-wm # contains xcb-ewmh among others
   ];
 
   postPatch = ''
