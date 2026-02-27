@@ -6,16 +6,16 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "locker";
-  version = "0-unstable-2025-08-12";
+  version = "1.0.0-unstable-2026-02-26";
 
   src = fetchFromGitHub {
     owner = "tgirlcloud";
     repo = "locker";
-    rev = "6b2a641992b67f3a8d847eda8a2a978f46f1439a";
-    hash = "sha256-BBY024wS6P4MkKaVl04L3rZDo9iu+Nu6Oi5gl8TKl/g=";
+    rev = "24c522fa0d62a4d6a52a58a71e397569de3ee15a";
+    hash = "sha256-SktDTxXxGZoUEP5Y7BOxF0sdw0dNARN4uowgkkuWCgY=";
   };
 
-  cargoHash = "sha256-XaSky3qSHi8L09jQaj118BqulLAyGP0fm4Menz/8u8g=";
+  cargoHash = "sha256-JwDFpw14ot4moEbVohRk1ZEeIMeDy4kw/3QECCdkV0E=";
 
   passthru.updateScript = nix-update-script {
     extraArgs = [
