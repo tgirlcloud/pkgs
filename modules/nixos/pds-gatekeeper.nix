@@ -76,6 +76,15 @@ in
           };
         };
       };
+
+      description = ''
+        Environment variables to set for the service. Secrets should be
+        specified using {option}`environmentFile`.
+
+        Refer to
+        <https://tangled.org/baileytownsend.dev/pds-gatekeeper#environment-variables-and-bonuses>
+        for available settings.
+      '';
     };
 
     environmentFiles = lib.mkOption {

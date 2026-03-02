@@ -105,6 +105,14 @@ in
           };
         };
       };
+
+      description = ''
+        Environment variables to set for the service. Secrets should be
+        specified using {option}`environmentFile`.
+
+        Refer to <https://github.com/teal-fm/piper/blob/main/.env.template> for
+        available settings.
+      '';
     };
 
     environmentFiles = lib.mkOption {

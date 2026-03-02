@@ -44,6 +44,8 @@ in
           };
         };
       };
+
+      description = "Environment variables to set for the service.";
     };
 
     environmentFiles = lib.mkOption {
