@@ -4,4 +4,5 @@
   ./pds-dash.nix
   ./pds-gatekeeper.nix
   ./piper.nix
+  ./hostling.nix
 ]
