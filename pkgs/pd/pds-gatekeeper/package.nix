@@ -7,16 +7,16 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "pds-gatekeeper";
-  version = "0-unstable-2026-01-05";
+  version = "0-unstable-2026-03-03";
 
   src = fetchFromTangled {
-    owner = "@baileytownsend.dev";
+    owner = "baileytownsend.dev";
     repo = "pds-gatekeeper";
-    rev = "ca02ceff4e2febe62fc78a7781f15136d4b4a714";
-    hash = "sha256-bqy/IbPyjgVurIghyyqIY7Hu/0oIb+wXbK2fRdW3YuM=";
+    rev = "9605d15d67317eb0965e484c14a6eeb59624e4a6";
+    hash = "sha256-/n/XgWLe0o1DGFG4Whq6GJJqQs2fmGAiY4CX9AUb6vM=";
   };
 
-  cargoHash = "sha256-phNpzZ6V37YA5N927iMpoKRp0fVdgzjo0odZxuHuOrE=";
+  cargoHash = "sha256-ZwDJr6roUnE1GSENWO65i5pvGfHnrUMXDixoCr9cT8g=";
 
   buildInputs = [ openssl ];
   nativeBuildInputs = [ pkg-config ];
