@@ -38,6 +38,13 @@ in
             description = "The directory where the PDS stores its data";
           };
 
+          PDS_HOSTNAME = lib.mkOption {
+            type = lib.types.nullOr lib.types.str;
+            default = pds.PDS_HOSTNAME;
+            defaultText = "localhost";
+            description = "The hostname of the PDS instance";
+          };
+
           PDS_BASE_URL = lib.mkOption {
             type = lib.types.nullOr lib.types.str;
             default = "https://localhost:${toString pds.PDS_PORT}";
@@ -100,10 +107,12 @@ in
         lib.genAttrs
           [
             "= /xrpc/com.atproto.server.getSession"
+            "= /xrpc/com.atproto.server.describeServer"
             "= /xrpc/com.atproto.server.updateEmail"
             "= /xrpc/com.atproto.server.createSession"
             "= /xrpc/com.atproto.server.createAccount"
             "= /@atproto/oauth-provider/~api/sign-in"
+            "/gate/"
           ]
           (_: {
             proxyPass = "http://${cfg.settings.GATEKEEPER_HOST}:${toString cfg.settings.GATEKEEPER_PORT}";
