@@ -11,13 +11,13 @@
 }:
 let
   pnpm = pnpm_10;
-  version = "0.3.1-unstable-2026-03-06";
+  version = "0.3.1-unstable-2026-03-08";
 
   src = fetchFromGitHub {
     owner = "BatteredBunny";
     repo = "hostling";
-    rev = "c61e479a6f40ccfe264bb04d393594a4e266fb9d";
-    hash = "sha256-wtrsLFY1zkgJCfofCgI+TuSm0mfGSEUIJ1Ung+yCEac=";
+    rev = "1146d3c20a74586e50a15c35b22f1fa3dc253fa2";
+    hash = "sha256-BW0E6JNcZtnT+Xl+uMAaW5KNIyNJ6sIw+UgsOwWz3ts=";
   };
 
   meta = {
