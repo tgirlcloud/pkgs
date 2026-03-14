@@ -49,7 +49,7 @@ let
         ;
       inherit pnpm;
       fetcherVersion = 3;
-      hash = "sha256-EPPGd8MVsALw5SOCgem8AXPo4ZeFcCF8eiQ/Uq7ega8=";
+      hash = "sha256-vkAR33eOtdceYCr6Amc5ZspscQW65XkJp+o+Jhl4YYw=";
     };
 
     buildPhase = ''
@@ -65,7 +65,7 @@ buildGoModule {
   pname = "hostling";
   inherit version src meta;
 
-  vendorHash = "sha256-vkAR33eOtdceYCr6Amc5ZspscQW65XkJp+o+Jhl4YYw=";
+  vendorHash = "sha256-AEqtKBnmwnbbGcYPvlv/5noQgJaZJad8rR3gWXFFEQY=";
 
   prePatch = ''
     cp -r ${frontend} ./public/dist
