@@ -2,7 +2,7 @@
   lib,
   pnpm,
   just,
-  nodejs_22,
+  nodejs-slim,
   stdenvNoCC,
   fetchPnpmDeps,
   pnpmConfigHook,
@@ -23,7 +23,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   nativeBuildInputs = [
     just
     pnpm
-    nodejs_22
+    nodejs-slim
     pnpmConfigHook
   ];
 
