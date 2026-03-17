@@ -11,13 +11,13 @@
 }:
 let
   pnpm = pnpm_10;
-  version = "0.3.1-unstable-2026-03-13";
+  version = "0.3.1-unstable-2026-03-16";
 
   src = fetchFromGitHub {
     owner = "BatteredBunny";
     repo = "hostling";
-    rev = "a74c81cb3f8ac69cdf454fea51dfe8e23b14e9e1";
-    hash = "sha256-KohacXRQDXxebWERz7y3umIjy4mMtllIcmzjfmgUe5U=";
+    rev = "85e4b0cb9e0591946f2ec083525e6783fa96ff8d";
+    hash = "sha256-jUgwvseFibmnHGraUCAatIIhop1s6zEXDgYCi375MNs=";
   };
 
   meta = {
@@ -65,7 +65,7 @@ buildGoModule {
   pname = "hostling";
   inherit version src meta;
 
-  vendorHash = "sha256-AEqtKBnmwnbbGcYPvlv/5noQgJaZJad8rR3gWXFFEQY=";
+  vendorHash = "sha256-qZiK8RQVlblR6bM1W4rIn8J6s3rMKShQpPhomGWFrsY=";
 
   prePatch = ''
     cp -r ${frontend} ./public/dist
