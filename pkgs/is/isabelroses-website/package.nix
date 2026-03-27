@@ -11,13 +11,13 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "isabelroses-website";
-  version = "0-unstable-2026-03-16";
+  version = "0-unstable-2026-03-26";
 
   src = fetchFromGitHub {
     owner = "isabelroses";
     repo = "website";
-    rev = "a291abd71cf915f8aaeeca1ec06f0f0cc00a030c";
-    hash = "sha256-4xiBIMslKM2MdBsgz33vdxrCKZdpjhvULw9FOUz/VOI=";
+    rev = "8deddbb756e6d2fd9ff4153d49545f7a844e1288";
+    hash = "sha256-IWeNyaqRZMX57KnNzTT0ZQnDM7merqReaoqQFyZmH6g=";
   };
 
   nativeBuildInputs = [
