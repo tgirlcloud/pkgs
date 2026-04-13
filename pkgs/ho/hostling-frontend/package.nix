@@ -5,7 +5,7 @@
   pnpm_10,
   fetchPnpmDeps,
   pnpmConfigHook,
-  fetchFromGitHub,
+  hostling,
   nix-update-script,
 }:
 let
@@ -13,14 +13,7 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "hostling-frontend";
-  version = "0.3.1-unstable-2026-03-30";
-
-  src = fetchFromGitHub {
-    owner = "BatteredBunny";
-    repo = "hostling";
-    rev = "00263dee404b28761e2627353ababca772383473";
-    hash = "sha256-i9SSmHfRTzpDxUYXNGs5+m6YpPcSSrD7KJkVy4PXy58=";
-  };
+  inherit (hostling) version src;
 
   sourceRoot = "${finalAttrs.src.name}/frontend";
 
@@ -53,7 +46,7 @@ stdenv.mkDerivation (finalAttrs: {
   passthru.updateScript = nix-update-script {
     extraArgs = [
       "--version"
-      "branch=HEAD"
+      "SKIP"
     ];
   };
 
@@ -61,7 +54,6 @@ stdenv.mkDerivation (finalAttrs: {
     description = "Simple file hosting service";
     homepage = "https://github.com/BatteredBunny/hostling";
     license = lib.licenses.mit;
-    mainProgram = "hostling";
     maintainers = with lib.maintainers; [ isabelroses ];
   };
 })
