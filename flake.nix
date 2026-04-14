@@ -95,7 +95,8 @@
                   if pkg ? updateScript && (lib.isList pkg.updateScript) then
                     lib.escapeShellArgs (
                       if (lib.match "nix-update|.*/nix-update" (lib.head pkg.updateScript) != null) then
-                        pkg.updateScript
+                        [ (lib.getExe pkgs.lixPackageSets.latest.nix-update) ]
+                        ++ (lib.tail pkg.updateScript)
                         ++ [
                           "--commit"
                           name
