@@ -46,7 +46,7 @@ stdenv.mkDerivation (finalAttrs: {
   passthru.updateScript = nix-update-script {
     extraArgs = [
       "--version"
-      "SKIP"
+      "skip"
     ];
   };
 
