@@ -1,19 +1,19 @@
 {
   lib,
   buildGoModule,
+  hostling-frontend,
   fetchFromGitHub,
   nix-update-script,
-  hostling-frontend,
 }:
 buildGoModule {
   pname = "hostling";
-  version = "0.3.1-unstable-2026-04-12";
+  version = "0.4.0-unstable-2026-04-20";
 
   src = fetchFromGitHub {
     owner = "BatteredBunny";
     repo = "hostling";
-    rev = "8f60a16da8ee7d816bcca28f8b967f080696571e";
-    hash = "sha256-IMKrymm5ZyijdwpL+qn3Bso+juMWIfeN1jz9jpPQzYc=";
+    rev = "c8900566c2e78d9e8fa5fe320daa64a18be07e11";
+    hash = "sha256-M5EYZBgWCAUiJA1NncLbo0m9BX0HqU4/0qG1pgvEYms=";
   };
 
   vendorHash = "sha256-zilBCWVwcJhw8tcipT41wH1ryQkzjjA3Ip/+zaeHD84=";
