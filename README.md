@@ -1,6 +1,6 @@
-# tgirlpkgs
+# extersia
 
-If you're reading the docs on the README.md file you can find the full documentation at [https://pkgs.tgirl.cloud/](https://pkgs.tgirl.cloud/).
+If you're reading the docs on the README.md file you can find the full documentation at [https://pkgs.extersia.com/](https://pkgs.extersia.com/).
 
 ## Installation
 
@@ -11,8 +11,8 @@ You can use this as either a flake or with channels, not that I know how to use 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    tgirlpkgs = {
-      url = "github:tgirlcloud/pkgs";
+    extersia = {
+      url = "github:extersia-org/pkgs";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         # flakes users don't need to track flake-compact
@@ -32,9 +32,9 @@ You can import the modules like so:
 {
   # you should only import these if you're system type allows for it
   imports = [
-    inputs.tgirlpkgs.nixosModules.default
-    inputs.tgirlpkgs.darwinModules.default
-    inputs.tgirlpkgs.homeManagerModules.default
+    inputs.extersia.nixosModules.default
+    inputs.extersia.darwinModules.default
+    inputs.extersia.homeManagerModules.default
   ];
 }
 ```
@@ -47,7 +47,7 @@ You can add the packages like so:
 { pkgs, inputs, ... }:
 {
   environment.systemPackages = [
-    inputs.tgirlpkgs.packages.${pkgs.stdenv.hostPlatform.system}.packagename
+    inputs.extersia.packages.${pkgs.stdenv.hostPlatform.system}.packagename
   ];
 }
 ```
@@ -60,7 +60,7 @@ You can add the overlay like so:
 { pkgs, inputs, ... }:
 {
   nixpkgs.overlays = [
-    inputs.tgirlpkgs.overlays.default
+    inputs.extersia.overlays.default
   ];
 
   # then you can use the packages like normal

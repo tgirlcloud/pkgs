@@ -1,4 +1,4 @@
-{ tgirlpkgs }:
+{ extersia }:
 {
   lib,
   pkgs,
@@ -14,7 +14,7 @@ in
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = tgirlpkgs.packages.${pkgs.stdenv.hostPlatform.system}.piper;
+      default = extersia.packages.${pkgs.stdenv.hostPlatform.system}.piper;
       description = "The package to use for piper";
     };
 

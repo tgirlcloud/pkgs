@@ -7,7 +7,7 @@ on:
 
 jobs:
   update:
-    if: github.repository == 'tgirlcloud/pkgs'
+    if: github.repository == 'extersia/pkgs'
     runs-on: ubuntu-latest
 
     permissions:

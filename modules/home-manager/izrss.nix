@@ -1,4 +1,4 @@
-{ tgirlpkgs }:
+{ extersia }:
 {
   lib,
   pkgs,
@@ -24,7 +24,7 @@ in
     enable = mkEnableOption "A fast and once simple cli todo tool";
 
     package = mkPackageOption pkgs "izrss" { } // {
-      default = tgirlpkgs.packages.${pkgs.stdenv.hostPlatform.system}.izrss;
+      default = extersia.packages.${pkgs.stdenv.hostPlatform.system}.izrss;
     };
 
     settings = mkOption {

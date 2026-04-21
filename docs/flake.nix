@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    tgirlpkgs.url = "path:../.";
+    extersia.url = "path:../.";
 
     nuscht-search = {
       url = "github:NuschtOS/search";
@@ -13,7 +13,7 @@
   outputs =
     {
       nixpkgs,
-      tgirlpkgs,
+      extersia,
       nuscht-search,
       ...
     }:
@@ -25,9 +25,9 @@
     in
     {
       packages = forAllSystems (pkgs: {
-        tgirlpkgs-docs = pkgs.callPackage ./package.nix {
+        extersia-docs = pkgs.callPackage ./package.nix {
           nuscht-search = nuscht-search.packages.${pkgs.stdenv.hostPlatform.system};
-          inherit tgirlpkgs;
+          inherit extersia;
         };
       });
     };

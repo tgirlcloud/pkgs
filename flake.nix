@@ -45,7 +45,7 @@
           _class = class;
           _file = "${self.outPath}/flake.nix#${class}Modules.${name}";
 
-          imports = [ (import file { tgirlpkgsSelf = self; }) ];
+          imports = [ (import file { extersiaSelf = self; }) ];
         };
     in
     {
@@ -135,15 +135,5 @@
         class = "homeManager";
         file = ./modules/home-manager;
       };
-
-      homeManagerModules = lib.mapAttrs (
-        _:
-        lib.warn "Flake attribute 'tgirlpkgs.homeManagerModules' is deprecated and will be removed in the future. Use 'tgirlpkgs.homeModules' instead."
-      ) self.homeModules;
     };
-
-  nixConfig = {
-    extra-substituters = [ "https://cache.tgirl.cloud/tgirlcloud" ];
-    extra-trusted-public-keys = [ "tgirlcloud:EaOlHrpuOI6Zwmir3/MzqS9uA0Xn3gYr15/k/v0HIPo=" ];
-  };
 }

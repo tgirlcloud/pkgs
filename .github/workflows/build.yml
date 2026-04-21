@@ -36,22 +36,17 @@ jobs:
       - name: Install Lix
         uses: samueldr/lix-gha-installer-action@v2026-02-22
 
-      - name: Setup Attic
-        uses: ryanccn/attic-action@v0.4.1
+      - uses: cachix/cachix-action@v17
         with:
-          inputs-from: flake.lock
-          endpoint: https://cache.tgirl.cloud
-          cache: tgirlcloud
-          token: ${{ secrets.ATTIC_TOKEN }}
-          exclude-paths: "(-(vendor(-staging)?|source|(npm|pnpm)-deps)$)|electron"
+          name: extersia
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
 
       - name: Build from the matrix
         run: |
-          nix run \
-            github:Mic92/nix-fast-build -- \
+          nix run nixpkgs#nix-fast-build -- \
             --no-nom \
             --skip-cached \
             --systems '${{ matrix.system }}' \
-            --option accept-flake-config true \
             --flake '.#hydraJobs.${{ matrix.system }}'
 

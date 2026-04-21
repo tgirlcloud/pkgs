@@ -1,4 +1,4 @@
-{ tgirlpkgs }:
+{ extersia }:
 {
   lib,
   pkgs,
@@ -18,7 +18,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ tgirlpkgs.packages.${pkgs.stdenv.hostPlatform.system}.bellado ];
+    home.packages = [ extersia.packages.${pkgs.stdenv.hostPlatform.system}.bellado ];
 
     home.shellAliases = optionalAttrs cfg.enableAliases {
       bel = "bellado";

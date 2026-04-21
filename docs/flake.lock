@@ -99,7 +99,7 @@
       "inputs": {
         "nixpkgs": "nixpkgs",
         "nuscht-search": "nuscht-search",
-        "tgirlpkgs": "tgirlpkgs"
+        "extersia": "extersia"
       }
     },
     "systems": {
@@ -117,7 +117,7 @@
         "type": "github"
       }
     },
-    "tgirlpkgs": {
+    "extersia": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
       },

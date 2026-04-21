@@ -1,4 +1,4 @@
-{ tgirlpkgs }:
+{ extersia }:
 {
   lib,
   pkgs,
@@ -16,7 +16,7 @@ in
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = tgirlpkgs.packages.${pkgs.stdenv.hostPlatform.system}.hostling;
+      default = extersia.packages.${pkgs.stdenv.hostPlatform.system}.hostling;
       description = "The hostling package to use";
     };
 

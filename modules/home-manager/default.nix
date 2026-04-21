@@ -1,10 +1,10 @@
-{ tgirlpkgsSelf }:
+{ extersiaSelf }:
 { lib, ... }:
 {
   imports = [
     (lib.modules.importApply ../global.nix {
-      tgirlpkgsModules = import ./all-modules.nix;
-      inherit tgirlpkgsSelf;
+      extersiaModules = import ./all-modules.nix;
+      inherit extersiaSelf;
     })
   ];
 }

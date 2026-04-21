@@ -1,20 +1,22 @@
-{ tgirlpkgsModules, tgirlpkgsSelf }:
+{ extersiaModules, extersiaSelf }:
 { lib, config, ... }:
 let
   inherit (lib) flip mkIf mkEnableOption;
   inherit (lib.modules) importApply;
 
-  importApplySelf = map (flip importApply { tgirlpkgs = tgirlpkgsSelf; });
+  importApplySelf = map (flip importApply { extersia = extersiaSelf; });
 in
 {
-  options.tgirlpkgs.cache.enable = mkEnableOption "tgirlpkgs cache";
+  options.extersia.cache.enable = mkEnableOption "extersia cache";
 
-  imports = importApplySelf tgirlpkgsModules;
+  imports = importApplySelf extersiaModules ++ [
+    (lib.mkRenamedOptionModule [ "tgirlpkgs" "cache" "enable" ] [ "extersia" "cache" "enable" ])
+  ];
 
   config = {
-    nix.settings = mkIf config.tgirlpkgs.cache.enable {
-      substituters = [ "https://cache.tgirl.cloud/tgirlcloud" ];
-      trusted-public-keys = [ "tgirlcloud:EaOlHrpuOI6Zwmir3/MzqS9uA0Xn3gYr15/k/v0HIPo=" ];
+    nix.settings = mkIf config.extersia.cache.enable {
+      substituters = [ "https://extersia.cachix.org" ];
+      trusted-public-keys = [ "extersia.cachix.org-1:ZHy9765xrhn4lDKGTzWWykHC+B091oTqNxClgc78MQU=" ];
     };
   };
 }

@@ -1,4 +1,4 @@
-{ tgirlpkgs }:
+{ extersia }:
 {
   lib,
   pkgs,
@@ -15,7 +15,7 @@ in
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = tgirlpkgs.packages.${pkgs.stdenv.hostPlatform.system}.pds-dash;
+      default = extersia.packages.${pkgs.stdenv.hostPlatform.system}.pds-dash;
       description = "The package to use for pds-dash";
     };
 

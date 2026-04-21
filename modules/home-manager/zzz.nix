@@ -1,4 +1,4 @@
-{ tgirlpkgs }:
+{ extersia }:
 {
   lib,
   pkgs,
@@ -23,7 +23,7 @@ in
   options.programs.zzz = {
     enable = mkEnableOption "A code snippet manager for your terminal";
 
-    package = mkPackageOption tgirlpkgs.packages.${pkgs.stdenv.hostPlatform.system} "zzz" { };
+    package = mkPackageOption extersia.packages.${pkgs.stdenv.hostPlatform.system} "zzz" { };
 
     settings = mkOption {
       inherit (settingsFormat) type;
