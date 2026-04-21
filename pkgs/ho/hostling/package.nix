@@ -16,7 +16,7 @@ buildGoModule {
     hash = "sha256-M5EYZBgWCAUiJA1NncLbo0m9BX0HqU4/0qG1pgvEYms=";
   };
 
-  vendorHash = "sha256-zilBCWVwcJhw8tcipT41wH1ryQkzjjA3Ip/+zaeHD84=";
+  vendorHash = "sha256-0HEfw89bYgrY+s/WLlTPmo/4pF6VFW3k+krK9ZhO4r8=";
 
   prePatch = ''
     cp -r ${hostling-frontend} ./public/dist
