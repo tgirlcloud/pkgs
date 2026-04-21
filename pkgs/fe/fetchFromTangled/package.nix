@@ -135,7 +135,7 @@ decorate (
             revWithTag = finalAttrs.rev;
           in
           {
-            url = "${baseUrl}/archive/${revWithTag}";
+            url = "${baseUrl}/archive/${revWithTag}?prefix=${repo}";
             extension = "tar.gz";
 
             derivationArgs = {
