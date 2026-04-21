@@ -5,7 +5,7 @@
   pnpm_10,
   fetchPnpmDeps,
   pnpmConfigHook,
-  hostling,
+  fetchFromGitHub,
   nix-update-script,
 }:
 let
@@ -13,7 +13,14 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "hostling-frontend";
-  inherit (hostling) version src;
+  version = "0.4.0-unstable-2026-04-20";
+
+  src = fetchFromGitHub {
+    owner = "BatteredBunny";
+    repo = "hostling";
+    rev = "c8900566c2e78d9e8fa5fe320daa64a18be07e11";
+    hash = "sha256-M5EYZBgWCAUiJA1NncLbo0m9BX0HqU4/0qG1pgvEYms=";
+  };
 
   sourceRoot = "${finalAttrs.src.name}/frontend";
 
@@ -46,7 +53,7 @@ stdenv.mkDerivation (finalAttrs: {
   passthru.updateScript = nix-update-script {
     extraArgs = [
       "--version"
-      "skip"
+      "branch=HEAD"
     ];
   };
 
