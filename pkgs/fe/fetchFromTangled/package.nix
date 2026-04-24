@@ -1,4 +1,4 @@
-# fetchFromTangled, <https://tangled.sh/isabelroses.com/fetch-tangled/blob/main/fetcher.nix>
+# fetchFromTangled, <https://tangled.org/did:plc:wvqowqkngb3g6vwr6kssm7lg/blob/main/fetcher.nix>
 
 {
   lib,
@@ -15,6 +15,7 @@ let
     fetchLFS = false;
     forceFetchGit = false;
     leaveDotGit = null;
+    postCheckout = "";
     rootDir = "";
     sparseCheckout = null;
   };
@@ -38,13 +39,12 @@ in
 decorate (
   {
     domain ? "tangled.org",
-    owner,
-    repo,
+    did,
     rev ? null,
     tag ? null,
 
     # TODO: add back when doing FP
-    # name ? repoRevToNameMaybe repo (lib.revOrTag rev tag) "tangled",
+    # name ? repoRevToNameMaybe did (lib.revOrTag rev tag) "tangled",
 
     passthru ? { },
     meta ? { },
@@ -65,6 +65,7 @@ decorate (
         else
           nonNullDefault
       ) useFetchGitargsDefaultNonNull != useFetchGitargsDefaultNonNull;
+
     useFetchGitArgsWDPassing = lib.overrideExisting (removeAttrs useFetchGitArgsDefault excludeUseFetchGitArgNames) args;
 
     position = (
@@ -76,7 +77,7 @@ decorate (
         builtins.unsafeGetAttrPos "rev" args
     );
 
-    baseUrl = "https://${domain}/${owner}/${repo}";
+    baseUrl = "https://${domain}/${did}";
 
     newMeta =
       meta
@@ -91,8 +92,7 @@ decorate (
     passthruAttrs = removeAttrs args (
       [
         "domain"
-        "owner"
-        "repo"
+        "did"
         "tag"
         "rev"
         "fetchSubmodules"
@@ -125,8 +125,7 @@ decorate (
             derivationArgs = {
               inherit
                 domain
-                owner
-                repo
+                did
                 ;
             };
           }
@@ -135,14 +134,13 @@ decorate (
             revWithTag = finalAttrs.rev;
           in
           {
-            url = "${baseUrl}/archive/${revWithTag}?prefix=${repo}";
+            url = "${baseUrl}/archive/${revWithTag}?prefix=${did}";
             extension = "tar.gz";
 
             derivationArgs = {
               inherit
                 domain
-                owner
-                repo
+                did
                 tag
                 ;
               rev = fetchgit.getRevWithTag {
@@ -160,9 +158,8 @@ decorate (
       )
       // {
         name =
-          args.name or (repoRevToNameMaybe finalAttrs.repo (lib.revOrTag finalAttrs.revCustom finalAttrs.tag)
-            "tangled"
-          );
+          args.name
+            or (repoRevToNameMaybe finalAttrs.did (lib.revOrTag finalAttrs.revCustom finalAttrs.tag) "tangled");
         meta = newMeta;
       };
   in
