@@ -10,8 +10,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   version = "0-unstable-2026-03-03";
 
   src = fetchFromTangled {
-    owner = "baileytownsend.dev";
-    repo = "pds-gatekeeper";
+    did = "did:plc:p3aqxmyn6f3pkm4dcl5co5gp";
     rev = "9605d15d67317eb0965e484c14a6eeb59624e4a6";
     hash = "sha256-/n/XgWLe0o1DGFG4Whq6GJJqQs2fmGAiY4CX9AUb6vM=";
   };
