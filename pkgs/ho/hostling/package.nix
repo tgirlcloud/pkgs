@@ -7,16 +7,16 @@
 }:
 buildGoModule {
   pname = "hostling";
-  version = "0.4.0-unstable-2026-04-24";
+  version = "0.4.0-unstable-2026-04-29";
 
   src = fetchFromGitHub {
     owner = "BatteredBunny";
     repo = "hostling";
-    rev = "a9e5d8cf3548de7414ff5e36c87ce31f1cc9e4d9";
-    hash = "sha256-rmvk2ouNiRwvLvDsx9+nwm7qAAtTCxLrl1hL0ZlcOnE=";
+    rev = "dd666895775674cd0578e35beec25009d881c62e";
+    hash = "sha256-hvrNw5wqvWbKU3/23TcC8MaX3YDVHWQfCxKrsuKiLfg=";
   };
 
-  vendorHash = "sha256-aNI0O3nx8auUwmmTkQoHba9IjGBOBBwEmSneGM7RZBg=";
+  vendorHash = "sha256-erwYPfFuqv0YuLO1WZtRhk0lTmkx764mfWENSN7yEyE=";
 
   prePatch = ''
     cp -r ${hostling-frontend} ./public/dist
